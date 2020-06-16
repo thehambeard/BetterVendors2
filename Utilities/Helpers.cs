@@ -3075,7 +3075,38 @@ namespace BetterVendors.Utilities
         static ValidationContext validation = new ValidationContext();
     }
 
+    [HarmonyLib.HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary")]
+    [HarmonyLib.HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary", new Type[0])]
+    static class LibraryScriptableObject_LoadDictionary_Patch
+    {
+        static void Postfix(LibraryScriptableObject __instance)
+        {
+            var self = __instance;
+            if (Main.Library != null) return;
+            Main.Library = self;
+            try
+            {
+#if DEBUG
+                bool allow_guid_generation = true;
+#else
+                bool allow_guid_generation = false; //no guids should be ever generated in release
+#endif
+                Helpers.GuidStorage.load(Properties.Resources.blueprints, allow_guid_generation);
+                Vendors.VendorBlueprints.CreateAllVendors();
+                Vendors.BVMechantGuild.CreateMerchantGuild();
 
+#if DEBUG
+                string guid_file_name = $@"{SettingsWrapper.ModPath}blueprints.txt";
+                Helpers.GuidStorage.dump(guid_file_name);
+#endif
+                Helpers.GuidStorage.dump($@"{SettingsWrapper.ModPath}loaded_blueprints.txt");
+            }
+            catch (Exception ex)
+            {
+                Main.Mod.Error(ex);
+            }
+        }
+    }
     public delegate void FastSetter<T, S>(T source, S value);
     public delegate S FastGetter<T, S>(T source);
     public delegate object FastInvoke(object target, params object[] paramters);
