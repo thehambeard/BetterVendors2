@@ -1,0 +1,10 @@
+{
+    "Id": "BetterVendors",
+    "DisplayName": "BetterVendors",
+    "Author": "Hambeard",
+    "Version": "1.0.0",
+    "ManagerVersion": "0.18.0",
+    "Requirements": [],
+    "AssemblyName": "BetterVendors.dll",
+    "EntryMethod": "BetterVendors.Main.Load"
+}
