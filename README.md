@@ -1,5 +1,5 @@
 # BetterVendors
-A mod for Pathfinder Kingmaker, KingmakerModMaker is required to compile.
+A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/lucianposton/KingmakerModMaker) is required to compile.
 
 ## Version 2.0.0
 * Moved KingmakerModMaker to Harmony 2.0
