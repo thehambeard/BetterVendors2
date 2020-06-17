@@ -41,7 +41,6 @@ namespace BetterVendors.Vendors
             this.AreaId = areaId;
             this.Posistion = posistion;
             this.Rotation = rotation;
-            this.HasSpawned = false;
             this.Enabled = enabled;
             this.UnitGuid = unitGuid;
             this.DialogGuid = dialogGuid;
@@ -55,14 +54,15 @@ namespace BetterVendors.Vendors
             this.PrefabId = prefabId;
             this.VendorTableOrig = vendorTableOrig;
             this.VendorTableGuid = vendorTableGuid;
+            this.HasSpawned = false;
         }
 
         public void Spawn()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            if (!Enabled || UnitGuid == "")
+            if (!Enabled || UnitGuid == "" || this.HasSpawned)
                 return;
-            if (HasSpawned && this.EntityData != null)
+            if (this.EntityData != null)
                 this.Destroy();
             this.EntityData = Game.Instance.EntityCreator.SpawnUnit((BlueprintUnit)Library.BlueprintsByAssetId[this.UnitGuid], this.Posistion, this.Rotation, Game.Instance.CurrentScene.MainState);
             this.Enabled = true;

@@ -56,13 +56,13 @@ namespace BetterVendors.Vendors
             if ((InGuild = Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(merchGuildId)))
                 LibraryLoad();
         }
-        public static void LibraryLoad()
+        public static void LibraryLoad(bool force = false)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
 
             Game.Instance.Player.MainCharacter.Value.Position = new Vector3(16.5f, 0.1f, -0.5f);
 
-            if (Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] == 0)
+            if (Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] == 0 && !force)
             {
 
                 foreach (UnitEntityData e in Game.Instance.State.Units.All)

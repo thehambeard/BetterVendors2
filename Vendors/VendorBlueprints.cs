@@ -18,7 +18,7 @@ namespace BetterVendors.Vendors
 
         public static Dictionary<string, Vendor> NewVendors = new Dictionary<string, Vendor>
         {
-            { "BillThePony",
+            { "47466adc4e4e476cb84680e0eef02f0f",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
                     new Vector3(21.8f, 0.0f, -2.3f),
@@ -38,7 +38,7 @@ namespace BetterVendors.Vendors
                     "a236e7b043ea4011bf184e3e81627030" // VendorTableGuid
                     ) },
 
-            { "CreeperScamp",
+            { "ce05d9f6286c4c1aa8e4b78f837a44e5",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
                     new Vector3(21.8f, 0.0f, 4.5f),
@@ -58,7 +58,7 @@ namespace BetterVendors.Vendors
                     "d221bdcca04541009f24598147cf79f3" // VendorTableGuid
                     ) },
 
-            { "ReivMerchant",
+            { "ee55f77e5be944ec9f74c382852a04ee",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
                     new Vector3(21.8f, 0.0f, 0.9f),
@@ -77,7 +77,7 @@ namespace BetterVendors.Vendors
                     "b3bc1bb9f4a59f3438edc505e0f3b407", //VendorTableOriginal C3 large
                     "8b75798d1486401d8ff93b0c80adb42c" // VendorTableGuid
                     ) },
-            { "GriswoldMerchant",
+            { "930ec057042542d8ad562bb5cfc7e4ee",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
                     new Vector3(21.8f, 0.0f, -6.0f),
@@ -96,7 +96,7 @@ namespace BetterVendors.Vendors
                     "b3bc1bb9f4a59f3438edc505e0f3b407", //VendorTableOriginal C3 large
                     "" // VendorTableGuid
                     ) },
-            { "Hassuf",
+            { "bd9607a0746543068abf099290d5ba6b",
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
                     new Vector3(-5.0f, 0.6f, 7.2f),
@@ -115,7 +115,7 @@ namespace BetterVendors.Vendors
                     "8c17a31b6a9a6eb4cbb668902e9edcb1", //firstvendortable
                     "none" // VendorTableGuid
                     ) },
-            { "Verdel",
+            { "803e8f2fdd85417da9653b79dd2bd528",
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
                     new Vector3(-1.1f, 0.6f, 7.5f),
@@ -134,7 +134,7 @@ namespace BetterVendors.Vendors
                     "7de959347266092448d8a72089ef9778", //VendorTableOriginal 
                     "none" // VendorTableGuid
                     ) },
-            { "Zarcie",
+            { "dcf8a96cb8234654a1d9b66ba5e8f81d",
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
                     new Vector3(0.5f, 1.6f, 7.6f),
@@ -153,7 +153,7 @@ namespace BetterVendors.Vendors
                     "5450d563aab78134196ee9a932e88671", //VendorTableOriginal 
                     "none" // VendorTableGuid
                     ) },
-            { "Arsinoe",
+            { "ae8de86d673a43aaa3c96b62978ac75b",
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
                     new Vector3(-7.2f, 0.6f, 8.5f),
