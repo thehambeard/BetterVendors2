@@ -12,11 +12,14 @@ A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/lucianpos
 * Changed the way throne room vendors are handled, all vendors are held in the same dictionary
 * Throne room vendors now have their own BlueprintUnit
 * Throne room vendors have only basic dialog now for quick interaction
+* Removed enabling/disabling individual throne room vendors, unnecessary feature
+* Moved arcane vendor progression from arsinoe to zarci
 
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
 * Rework hacky source code
 * Add support for DLC
+* revist vendor progression code for improvements, bugs, etc. 
 * Bug: Moving vendors after load duplicates vendor
 
 ## Notes:
