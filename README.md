@@ -16,8 +16,8 @@ A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/lucianpos
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
 * Rework hacky source code
-* Merchant Guild menu
 * Add support for DLC
+* Bug: Moving vendors after load duplicates vendor
 
 ## Notes:
 * Before upgrading to 2.0 of the mod despawn the throne room vendors
