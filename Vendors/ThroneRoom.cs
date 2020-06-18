@@ -29,20 +29,25 @@ namespace BetterVendors.Vendors
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
 
         }
-        public void OnAreaLoadingComplete()
+
+        public static void HandleAreaLoad()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
 
             if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||
                 Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092"))
             {
-                HashSet<string> units = HamHelpers.GetAreaUnitGuids();
+                HamHelpers.updateAreaUnitGuids();
                 foreach (KeyValuePair<string, Vendor> kvp in VendorBlueprints.NewVendors.Where(n => n.Value.AreaId == Vendor.Area.ThroneRoom))
                 {
-                    if(!units.Contains(kvp.Value.UnitGuid))
+                    if (!HamHelpers.AreaUnitGuids.Contains(kvp.Value.UnitGuid))
                         kvp.Value.Spawn();
                 }
             }
+        }
+        public void OnAreaLoadingComplete()
+        {
+            HandleAreaLoad();
         }
     }
 }

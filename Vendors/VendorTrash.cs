@@ -10,7 +10,7 @@ using UnityEngine;
 using static BetterVendors.Main;
 using static BetterVendors.Utilities.SettingsWrapper;
 
-namespace BetterVendors.Vendor
+namespace BetterVendors.Vendors
 {
     internal class VendorTrashController : IModEventHandler, ISlotsController, IAreaLoadingStagesHandler
     {

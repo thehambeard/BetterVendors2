@@ -17,7 +17,7 @@ using System.Linq;
 using UnityEngine;
 using static BetterVendors.Utilities.SettingsWrapper;
 
-namespace BetterVendors.VendorProgression
+namespace BetterVendors.Vendors
 {
     public class ProgressionLogic
     {

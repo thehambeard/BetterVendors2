@@ -1,4 +1,5 @@
-﻿using Kingmaker;
+﻿using BetterVendors.Utilities;
+using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Entities;
 using System.Reflection;
@@ -14,7 +15,6 @@ namespace BetterVendors.Vendors
             MerchantGuild
         }
         public UnitEntityData EntityData { get; private set; }
-
         public Area AreaId { get; private set; }
         public string UnitGuid { get; private set; }
         public string DialogGuid { get; private set; }
@@ -60,30 +60,36 @@ namespace BetterVendors.Vendors
         public void Spawn()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            if (!Enabled || UnitGuid == "" || this.HasSpawned)
-                return;
-            if (this.EntityData != null)
-                this.Destroy();
+            Main.Mod.Debug(HamHelpers.AreaUnitGuids.Count);
+            this.Destroy();
             this.EntityData = Game.Instance.EntityCreator.SpawnUnit((BlueprintUnit)Library.BlueprintsByAssetId[this.UnitGuid], this.Posistion, this.Rotation, Game.Instance.CurrentScene.MainState);
-            this.Enabled = true;
-            this.HasSpawned = true;
         }
 
         public void Destroy()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            this.Enabled = false;
-            this.HasSpawned = false;
-            this.EntityData.Destroy();
+            if(this.EntityData == null) this.EntityData = GetDataById(this.UnitGuid);
+            if (this.EntityData != null) this.EntityData.Destroy();
         }
 
-        public void Move(Vector3 posistion)
+        private static UnitEntityData GetDataById(string id)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            this.Posistion = posistion;
-            this.Spawn();
+            foreach (UnitEntityData unit in Game.Instance.State.Units)
+            {
+                if (unit.Blueprint.AssetGuid.Equals(id))
+                    return unit;
+            }
+            return null;
         }
 
-        public void Enable() { this.Enabled = !this.Enabled; }
+        public void Move(Vector3 posistion, Vector3 rotation)
+        {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            
+            this.Posistion = posistion;
+            this.Rotation = Quaternion.LookRotation(rotation);
+            this.Spawn();
+        }
     }
 }

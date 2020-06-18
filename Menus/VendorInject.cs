@@ -1,5 +1,4 @@
-﻿using BetterVendors.Vendor;
-using Kingmaker;
+﻿using Kingmaker;
 using ModMaker;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ using GL = UnityEngine.GUILayout;
 
 namespace BetterVendors.Menus
 {
-    class MenuVendorInject : IMenuSelectablePage
+    class VendorInject : IMenuSelectablePage
     {
         public string Name => Local["Menu_Tab_Inject"];
 
@@ -22,7 +21,7 @@ namespace BetterVendors.Menus
         private static GUILayoutOption[] falseWidth = new GUILayoutOption[] { GUILayout.ExpandWidth(false) };
         Dictionary<string, string> results = new Dictionary<string, string>();
         private static int vendorToolbar = 0;
-        string[] vendors = VendorInject.VendorTableIds.Keys.ToArray<string>();
+        string[] vendors = Vendors.VendorInject.VendorTableIds.Keys.ToArray();
 
         public void OnGUI(UnityModManager.ModEntry modEntry)
         {
@@ -40,7 +39,7 @@ namespace BetterVendors.Menus
                     searchString = GUILayout.TextField(searchString, 30, Array.Empty<GUILayoutOption>());
                     if (GUILayout.Button(Local["Menu_Btn_Search"], falseWidth) && searchString != "")
                     {
-                        results = VendorInject.SearchItems(searchString);
+                        results = Vendors.VendorInject.SearchItems(searchString);
                     }
                 }
                 try
@@ -52,10 +51,10 @@ namespace BetterVendors.Menus
                         vendorToolbar = GUILayout.Toolbar(vendorToolbar, vendors, new GUIStyle(GUI.skin.button) { wordWrap = true, fixedHeight = 50f }, new GUILayoutOption[] { GL.MaxWidth(800f) });
                         if (GUILayout.Button(string.Format(Local["Menu_Btn_AddAll"], vendors[vendorToolbar]), falseWidth))
                         {
-                            results = VendorInject.SearchItems(searchString);
+                            results = Vendors.VendorInject.SearchItems(searchString);
                             foreach (KeyValuePair<string, string> item in results)
                             {
-                                VendorInject.addItemToVendor(item.Key, VendorInject.VendorTableIds[vendors[vendorToolbar]]);
+                                Vendors.VendorInject.addItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
                             }
                         }
                         foreach (KeyValuePair<string, string> item in results.OrderBy(x => x.Value))
@@ -66,7 +65,7 @@ namespace BetterVendors.Menus
                                 bool flagAdd = GUILayout.Button(string.Format(Local["Menu_Txt_AddToVendor"], item.Value, vendors[vendorToolbar]), falseWidth);
                                 if (flagAdd)
                                 {
-                                    VendorInject.addItemToVendor(item.Key, VendorInject.VendorTableIds[vendors[vendorToolbar]]);
+                                    Vendors.VendorInject.addItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
                                     GUILayout.Label(Local["Menu_Txt_ItemAdded"], falseWidth);
                                 }
                             }

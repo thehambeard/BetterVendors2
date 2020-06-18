@@ -8,7 +8,7 @@ using UnityEngine;
 using BetterVendors.Utilities;
 
 
-namespace BetterVendors.Vendor
+namespace BetterVendors.Vendors
 {
     class VendorInject
     {

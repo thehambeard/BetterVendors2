@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace BetterVendors.Vendors
 {
-    public class BVMechantGuild : IModEventHandler, IAreaLoadingStagesHandler
+    public class MechantGuild : IModEventHandler, IAreaLoadingStagesHandler
     {
         public static bool InThroneRoom { get; set; }
         public static bool IsStone { get; set; }
@@ -51,8 +51,7 @@ namespace BetterVendors.Vendors
         public static void HandleSceneLoaded()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            InThroneRoom = Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||
-                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092");
+            InThroneRoom = HamHelpers.InThroneRoom();
             if ((InGuild = Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals(merchGuildId)))
                 LibraryLoad();
         }

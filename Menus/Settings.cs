@@ -16,7 +16,7 @@ using GLO = UnityEngine.GUILayoutOption;
 
 namespace BetterVendors.Menus
 {
-    class MenuSettings : IMenuSelectablePage
+    class Settings : IMenuSelectablePage
     {
         public string Name => Local["Menu_Tab_Settings"];
 

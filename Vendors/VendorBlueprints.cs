@@ -2,6 +2,7 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items;
 using Kingmaker.DialogSystem.Blueprints;
+using Kingmaker.Localization;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Interaction;
 using Kingmaker.Utility;
@@ -226,12 +227,13 @@ namespace BetterVendors.Vendors
                 unit.ReplaceComponent<AddVendorItems>(newVendorTable);
                 unit.ReplaceComponent<DialogOnClick>(newDialog);
                 unit.Prefab.AssetId = ven.PrefabId;
-                unit.LocalizedName = new Kingmaker.Localization.SharedStringAsset
+                Main.Mod.Debug(ven.DisplayName);
+                Main.Mod.Debug(ven.Name);
+                unit.LocalizedName = new SharedStringAsset
                 {
                     name = ven.Name + ".Local",
-                    String = Helpers.CreateString(ven.Name + "Local.Str", ven.DisplayName)
+                    String = Helpers.CreateString(ven.Name + ".Local.Str", ven.DisplayName)
                 };
-
             }
             catch (Exception ex)
             {

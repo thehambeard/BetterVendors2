@@ -3093,7 +3093,7 @@ namespace BetterVendors.Utilities
 #endif
                 Helpers.GuidStorage.load(Properties.Resources.blueprints, allow_guid_generation);
                 Vendors.VendorBlueprints.CreateAllVendors();
-                Vendors.BVMechantGuild.CreateMerchantGuild();
+                Vendors.MechantGuild.CreateMerchantGuild();
 
 #if DEBUG
                 string guid_file_name = $@"{SettingsWrapper.ModPath}blueprints.txt";
