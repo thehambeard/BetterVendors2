@@ -30,10 +30,10 @@ A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/lucianpos
 VendorTables:
 - [ ] C2_VendorTableLarge.03139ca71b2f2a34bae0a8a11a342fe4.json
 - [ ] C2_VendorTableSmall.efa12e6fcc198a748875fea573e94175.json
-- [ ] C3_VendorTableLarge.b3bc1bb9f4a59f3438edc505e0f3b407.json
+- [X] C3_VendorTableLarge.b3bc1bb9f4a59f3438edc505e0f3b407.json
 - [ ] C3_VendorTableSmall.9126c670f0743b647b4e9ba850214d8d.json
-- [ ] C4_VendorTableLarge.fc01b45fee3606749a21d9612c5629a6.json
-- [ ] C4_VendorTableSmall.4b1bb03a5d19a534bad2aa5cd766af92.json
+- [X] C4_VendorTableLarge.fc01b45fee3606749a21d9612c5629a6.json
+- [X] C4_VendorTableSmall.4b1bb03a5d19a534bad2aa5cd766af92.json
 - [ ] C61_IssiliVendorTable.1cfdec17b06a47740bacb7a7ea9dd0c6.json
 - [ ] DLC2QuartermasterBaseTable.8035c1313902fae4796d36065e769297.json
 - [ ] DLC2QuartermasterImprovedTable.7c68519dca4334c408227bb0140ac50f.json
@@ -41,6 +41,7 @@ VendorTables:
 - [ ] Rushlight_MagicVendorTable.2712cf5716e578f4e95165cb43dda8ae.json
 - [ ] Rushlight_SmithVendorTable.0d506a80e3f07544394d812ad7014cf3.json
 - [ ] C71_GoblinVendorTable.488ce39f5594cff4f8a8228e95b091e3.json
+- [ ] Custom vendor table for the items below
  
 Items:
 - [ ] BetrayalFirstItem.92cfdd028ba3bff4f9f29858f81b1c71.json
