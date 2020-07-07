@@ -1,6 +1,7 @@
 ﻿using BetterVendors.Utilities;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items;
+using Kingmaker.Blueprints.Loot;
 using Kingmaker.DialogSystem.Blueprints;
 using Kingmaker.Localization;
 using Kingmaker.UnitLogic.FactLogic;
@@ -37,7 +38,7 @@ namespace BetterVendors.Vendors
                     "Here stands the famous pony, Bill",
                     "447d2907feec82545b3773fbb4709588", //Pony Model
                     "fc01b45fee3606749a21d9612c5629a6", //C4_Large
-                    "a236e7b043ea4011bf184e3e81627030" // VendorTableGuid
+                    "a236e7b043ea4011bf184e3e81627030",  true //VendorTableGuid
                     ) },
 
             { "ce05d9f6286c4c1aa8e4b78f837a44e5",
@@ -57,7 +58,7 @@ namespace BetterVendors.Vendors
                     "Hello Caldera! I'm here all week!", //Description
                     "a470a95a5ba6afc44979d25a018914cf", //Prefab goblin
                     "4b1bb03a5d19a534bad2aa5cd766af92", //VendorTableOriginal C4 small
-                    "d221bdcca04541009f24598147cf79f3" // VendorTableGuid
+                    "d221bdcca04541009f24598147cf79f3",  true //VendorTableGuid
                     ) },
 
             { "ee55f77e5be944ec9f74c382852a04ee",
@@ -77,7 +78,7 @@ namespace BetterVendors.Vendors
                     "Got some rare things on sale, stranger", //Description
                     "8ebc6d74fa132d9478d0f2ee298e429d", //Prefab
                     "b3bc1bb9f4a59f3438edc505e0f3b407", //VendorTableOriginal C3 large
-                    "8b75798d1486401d8ff93b0c80adb42c" // VendorTableGuid
+                    "8b75798d1486401d8ff93b0c80adb42c",  true //VendorTableGuid
                     ) },
             { "930ec057042542d8ad562bb5cfc7e4ee",
                 new Vendor(
@@ -96,7 +97,7 @@ namespace BetterVendors.Vendors
                     "What can I do you fer.", //Description
                     "5ec40f5a960494447af318080e7a4d58", //Prefab
                     "03139ca71b2f2a34bae0a8a11a342fe4", //VendorTableOriginal C2 large
-                    "" // VendorTableGuid
+                    "17e43258ad39434a82368e669f8a2743",  true //VendorTableGuid
                     ) },
             { "3b8cbb604e63405da0449c9c388087d7",
                 new Vendor(
@@ -115,7 +116,7 @@ namespace BetterVendors.Vendors
                     "I'll be there with bells on! Ho Ho!", //Description
                     "5e8b8c5216543b94fb863325409f0a0f", //Prefab
                     "efa12e6fcc198a748875fea573e94175", //VendorTableOriginal C2 small
-                    "266185454c7e44549fbfa52288af3bf4" // VendorTableGuid
+                    "266185454c7e44549fbfa52288af3bf4",  true //VendorTableGuid
                     ) },
             { "164d8ddd554c4d53b8a7f20ac9cdba89",
                 new Vendor(
@@ -134,9 +135,9 @@ namespace BetterVendors.Vendors
                     "Something good will happen to you! Something good indeed.", //Description
                     "6e8f58e9489bcb747beb203f72e807a2", //Prefab
                     "9126c670f0743b647b4e9ba850214d8d", //VendorTableOriginal c3 large
-                    "3459b752099e498abf75d118cc0564e7" // VendorTableGuid
+                    "3459b752099e498abf75d118cc0564e7",  true //VendorTableGuid
                     ) },
-            { "MarcusTemp",
+            { "78920ba3a51d407e89d4ff4bbf811310",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
                     new Vector3(21.8f, 0.0f, -6.0f),
@@ -153,7 +154,7 @@ namespace BetterVendors.Vendors
                     "If I can't find what you need, it can't be found in the stolen lands.", //Description
                     "5324e8cdfb5a79a479eb5668a4f0ae1c", //Prefab
                     "1cfdec17b06a47740bacb7a7ea9dd0c6", //C61_IssiliVendorTable
-                    "847195acd5f94a68b1930d1162bc7005" // VendorTableGuid
+                    "847195acd5f94a68b1930d1162bc7005",  true //VendorTableGuid
                     ) },
             { "08089c7248134457b9c7c6eaf5afbec5",
                 new Vendor(
@@ -172,7 +173,7 @@ namespace BetterVendors.Vendors
                     "You've come for the trinkets haven't you?", //Description
                     "f8dcfbcd0d6de5b4d8689479419ac930", //Prefab
                     "8035c1313902fae4796d36065e769297", //VendorTableOriginal DLC2QuartermasterBaseTable
-                    "2eed726aaaeb40f9b4b68388fbeee954" // VendorTableGuid
+                    "2eed726aaaeb40f9b4b68388fbeee954",  true //VendorTableGuid
                     ) },
             { "0856b394a0514e03b653115747a2c9bb",
                 new Vendor(
@@ -191,7 +192,7 @@ namespace BetterVendors.Vendors
                     "Us Tems have a deep history.", //Description
                     "2d769df1ef63e964eb990c87f1de5026", //Prefab
                     "7c68519dca4334c408227bb0140ac50f", //VendorTableOriginal DLC2QuartermasterImprovedTable
-                    "67bf04711f384f9f8335b1ac8133f0d3" // VendorTableGuid
+                    "67bf04711f384f9f8335b1ac8133f0d3",  true //VendorTableGuid
                     ) },
             { "0e8dc2a8630446c489a84197b3a56902",
                 new Vendor(
@@ -210,7 +211,7 @@ namespace BetterVendors.Vendors
                     "Welcome!", //Description
                     "9c6d635d9937580449ab6f02a8149053", //Prefab
                     "78e1aab1a8d9f4649ae83388c33283cd", //VendorTableOriginal Rushlight_GeneralistVendorTable
-                    "" // VendorTableGuid
+                    "00ca8f56f68f4c16a5d564f889b6e60c",  false //VendorTableGuid
                     ) },
             { "c94a3d4bd748431eb9b85ae7249f1d5f",
                 new Vendor(
@@ -229,9 +230,9 @@ namespace BetterVendors.Vendors
                     "Take care, it's a big stolen land.", //Description
                     "8e57c26884df05b4ab38f34538b72c28", //Prefab
                     "2712cf5716e578f4e95165cb43dda8ae", //VendorTableOriginal Rushlight_MagicVendorTable
-                    "" // VendorTableGuid
+                    "022c478394fb424091b604d5d5c2ba5e",  false //VendorTableGuid
                     ) },
-            { "DrebinTemp",
+            { "4d544e1766c94b3c98355f97e3eb50fd",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
                     new Vector3(21.8f, 0.0f, -6.0f),
@@ -248,7 +249,7 @@ namespace BetterVendors.Vendors
                     "Drebins, we have yours.", //Description
                     "903822fc596783f4c82d6ad217cdf4e1", //Prefab
                     "0d506a80e3f07544394d812ad7014cf3", //VendorTableOriginal Rushlight_SmithVendorTable
-                    "" // VendorTableGuid
+                    "994026259c3e495b80d07720402c6bae",  false //VendorTableGuid
                     ) },
             { "d044c070bc9c4129930307ae16fd17f8",
                 new Vendor(
@@ -267,7 +268,7 @@ namespace BetterVendors.Vendors
                     "You ever been to Varnhold?", //Description
                     "2db8287e83e344b4c8a2415d5750393e", //Prefab
                     "488ce39f5594cff4f8a8228e95b091e3", //VendorTableOriginal C71_GoblinVendorTable
-                    "" // VendorTableGuid
+                    "591b0b52eaac41f39ddc0b9bd57b4bf7",  false //VendorTableGuid
                     ) },
             { "94f1d2c05db54a7ab7b0c25881dca72b",
                 new Vendor(
@@ -286,7 +287,7 @@ namespace BetterVendors.Vendors
                     "I know a bit about all things magical. Come see what I have collected on my travels.", //Description
                     "43cfb6a02522db343b0f78d0cab62ed4", //Prefab
                     "dce232e52e1943e89fcb1a8b2d123fa0", //VendorTableOriginal Custom
-                    "none" // VendorTableGuid
+                    "none",  true //VendorTableGuid
                     ) },
             { "bd9607a0746543068abf099290d5ba6b",
                 new Vendor(
@@ -305,7 +306,7 @@ namespace BetterVendors.Vendors
                     "It's good to get out of the sun for a while, your grace.", //Description
                     "2a3af8edd0eed284a9bc201eb061bd0f", //Prefab
                     "8c17a31b6a9a6eb4cbb668902e9edcb1", //firstvendortable
-                    "none" // VendorTableGuid
+                    "none",  true //VendorTableGuid
                     ) },
             { "803e8f2fdd85417da9653b79dd2bd528",
                 new Vendor(
@@ -324,7 +325,7 @@ namespace BetterVendors.Vendors
                     "How can I be of service, your grace?", //Description
                     "8efa5d7293480494390c2283001eb420", //Prefab
                     "7de959347266092448d8a72089ef9778", //VendorTableOriginal 
-                    "none" // VendorTableGuid
+                    "none",  true //VendorTableGuid
                     ) },
             { "dcf8a96cb8234654a1d9b66ba5e8f81d",
                 new Vendor(
@@ -343,7 +344,7 @@ namespace BetterVendors.Vendors
                     "G'day your grace.", //Description
                     "5dfb4b6869af5e54ba4774ed8957628b", //Prefab
                     "5450d563aab78134196ee9a932e88671", //VendorTableOriginal 
-                    "none" // VendorTableGuid
+                    "none",  true //VendorTableGuid
                     ) },
             { "ae8de86d673a43aaa3c96b62978ac75b",
                 new Vendor(
@@ -362,7 +363,7 @@ namespace BetterVendors.Vendors
                     "Blessed be, your grace", //Description
                     "de9134fe1b5b3e941bdf7b2cf3979bea", //Prefab
                     "afa2c7f292b8e1c4d9c835f0e8047dd3", //VendorTableOriginal
-                    "none" // VendorTableGuid
+                    "none",  true //VendorTableGuid
                     ) }
         };
 
@@ -370,11 +371,14 @@ namespace BetterVendors.Vendors
         {
             foreach (KeyValuePair<string, Vendor> kvp in NewVendors)
             {
-                CreateVendor(kvp.Value);
+                if (kvp.Value.Shared)
+                    CreateSharedVendor(kvp.Value);
+                else
+                    CreateVendor(kvp.Value);
             }
         }
 
-        public static void CreateVendor(Vendor ven)
+        public static void CreateSharedVendor(Vendor ven)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             try
@@ -385,7 +389,7 @@ namespace BetterVendors.Vendors
                 var answersList = Library.CopyAndAdd<BlueprintAnswersList>("e30c7b55e7c8a6249a1334c4442414de", cueBase.name + ".AnsList01", ven.AnsListGuid);
                 var answerLook = Library.CopyAndAdd<BlueprintAnswer>("719394baae0fe7645aa8e6c743556f04", answersList.name + ".Ans01", ven.AnswerShowGuid);
                 var answerExit = Library.CopyAndAdd<BlueprintAnswer>("938dc0b52670b9a4fb3d3ee611819f0f", answersList.name + ".Ans02", ven.AnswerExitGuid);
-                BlueprintSharedVendorTable vendorTable = new BlueprintSharedVendorTable();
+                var vendorTable = ScriptableObject.CreateInstance<BlueprintSharedVendorTable>();
                 if (!(ven.VendorTableGuid == "none"))
                 {
                     vendorTable = Library.CopyAndAdd<BlueprintSharedVendorTable>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);
@@ -420,11 +424,64 @@ namespace BetterVendors.Vendors
                 unit.Prefab.AssetId = ven.PrefabId;
                 Main.Mod.Debug(ven.DisplayName);
                 Main.Mod.Debug(ven.Name);
-                unit.LocalizedName = new SharedStringAsset
+                unit.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>();
+                unit.LocalizedName.name = ven.Name + ".Local";
+                unit.LocalizedName.String = Helpers.CreateString(ven.Name + ".Local.Str", ven.DisplayName);
+            }
+            catch (Exception ex)
+            {
+                Main.Mod.Debug(ex.Message);
+            }
+        }
+        public static void CreateVendor(Vendor ven)
+        {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            try
+            {
+                var unit = Library.CopyAndAdd<BlueprintUnit>("e0449cfcf8ad6084ebfc161fb73e9a27", ven.Name, ven.UnitGuid);
+                var dialog = Library.CopyAndAdd<BlueprintDialog>("cd572bf45986d134591b8ff48e1f191f", ven.Name + ".Dialog01", ven.DialogGuid);
+                var cueBase = Library.CopyAndAdd<BlueprintCue>("0f6773f2ad1af654291e4a20cfa417ad", dialog.name + ".Cue01", ven.CueGuid);
+                var answersList = Library.CopyAndAdd<BlueprintAnswersList>("e30c7b55e7c8a6249a1334c4442414de", cueBase.name + ".AnsList01", ven.AnsListGuid);
+                var answerLook = Library.CopyAndAdd<BlueprintAnswer>("719394baae0fe7645aa8e6c743556f04", answersList.name + ".Ans01", ven.AnswerShowGuid);
+                var answerExit = Library.CopyAndAdd<BlueprintAnswer>("938dc0b52670b9a4fb3d3ee611819f0f", answersList.name + ".Ans02", ven.AnswerExitGuid);
+                var vendorTable = ScriptableObject.CreateInstance<BlueprintUnitLoot>();
+                if (!(ven.VendorTableGuid == "none"))
                 {
-                    name = ven.Name + ".Local",
-                    String = Helpers.CreateString(ven.Name + ".Local.Str", ven.DisplayName)
-                };
+                    vendorTable = Library.CopyAndAdd<BlueprintUnitLoot>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);
+                }
+                else
+                {
+                    vendorTable = Library.Get<BlueprintUnitLoot>(ven.VendorTableOrig);
+                }
+
+                dialog.FirstCue.Cues[0] = cueBase;
+                cueBase.Text = Helpers.CreateString(cueBase.name + ".Text", ven.Description);
+                cueBase.ParentAsset = dialog;
+                answerLook.ParentAsset = answersList;
+                answerExit.ParentAsset = answersList;
+                answersList.Answers.Clear();
+                answersList.Answers.Add(answerLook);
+                answersList.Answers.Add(answerExit);
+                cueBase.Answers = answersList.Answers;
+                answersList.ParentAsset = cueBase;
+                DialogOnClick newDialog = unit.GetComponent<DialogOnClick>().CreateCopy(delegate (DialogOnClick dc)
+                {
+                    dc.Dialog = dialog;
+                    dc.name = unit.name + ".OnClick";
+                });
+                AddVendorItems newVendorTable = unit.GetComponent<AddVendorItems>().CreateCopy(delegate (AddVendorItems avi)
+                {
+                    avi.name = unit.name + "VendorTable";
+                    avi.m_Loot = vendorTable;
+                });
+                unit.ReplaceComponent<AddVendorItems>(newVendorTable);
+                unit.ReplaceComponent<DialogOnClick>(newDialog);
+                unit.Prefab.AssetId = ven.PrefabId;
+                Main.Mod.Debug(ven.DisplayName);
+                Main.Mod.Debug(ven.Name);
+                unit.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>();
+                unit.LocalizedName.name = ven.Name + ".Local";
+                unit.LocalizedName.String = Helpers.CreateString(ven.Name + ".Local.Str", ven.DisplayName);
             }
             catch (Exception ex)
             {

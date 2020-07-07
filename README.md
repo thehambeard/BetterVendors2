@@ -5,7 +5,7 @@ A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/lucianpos
 * Moved Entire code base to Harmony 2.0
 * Moved KingmakerModMaker to Harmony 2.0
 * Moved Cotw/EA helpers to Harmony 2.0
-* Added the merchant guild. The guild contains 13 new vendors, they have the vendor tables of the harder to get to vendors.
+* Added the merchant guild. The guild contains 14 new vendors, they have the vendor tables of the harder to get to vendors.
 These vendor tables include, Rushlight, Skeleton(All possible tables), Varnhold DLC tables including the Goblin Merchant in main campaign, 
 Issili, and a vendor that has most of the items that are unobtainable.   
 * Fixed some throne room vendors not being interactable

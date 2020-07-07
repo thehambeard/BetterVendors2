@@ -32,10 +32,11 @@ namespace BetterVendors.Vendors
         public bool Enabled { get; private set; }
         public Vector3 Posistion { get; private set; }
         public Quaternion Rotation { get; private set; }
+        public bool Shared { get; private set; }
 
         private static LibraryScriptableObject Library => Main.Library;
 
-        public Vendor(Area areaId, Vector3 posistion, Quaternion rotation, bool enabled, string unitGuid, string dialogGuid, string cueGuid, string ansListGuid, string answerShowGuid, string answerExitGuid, string name, string displayName, string description, string prefabId, string vendorTableOrig, string vendorTableGuid)
+        public Vendor(Area areaId, Vector3 posistion, Quaternion rotation, bool enabled, string unitGuid, string dialogGuid, string cueGuid, string ansListGuid, string answerShowGuid, string answerExitGuid, string name, string displayName, string description, string prefabId, string vendorTableOrig, string vendorTableGuid, bool shared)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             this.AreaId = areaId;
@@ -55,6 +56,7 @@ namespace BetterVendors.Vendors
             this.VendorTableOrig = vendorTableOrig;
             this.VendorTableGuid = vendorTableGuid;
             this.HasSpawned = false;
+            this.Shared = shared;
         }
 
         public void Spawn()
