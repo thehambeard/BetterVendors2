@@ -38,7 +38,7 @@ namespace BetterVendors.Vendors
         {
             {
 				"dce232e52e1943e89fcb1a8b2d123fa0", //Guid
-                new NewVendorTable("VoloVendorTable", "", new List<string>
+                new NewVendorTable("Volo.VendorTable", "dce232e52e1943e89fcb1a8b2d123fa0", new List<string>
                 {
 						"92cfdd028ba3bff4f9f29858f81b1c71",
 						"8b6da0c2cead68d49bbc95316db2883f",
@@ -101,7 +101,7 @@ namespace BetterVendors.Vendors
 				newTable.name = vendors.Value.Name;
 				newTable.AutoIdentifyAllItems = vendors.Value.AutoId;
 
-				if(!Library.BlueprintsByAssetId.ContainsKey(vendors.Key)) Library.AddAsset(newTable, vendors.Key);
+				Library.AddAsset(newTable, vendors.Key);
 
 				List<LootItemsPackFixed> list = new List<LootItemsPackFixed>();
 
@@ -114,6 +114,7 @@ namespace BetterVendors.Vendors
 					Helpers.SetField(lootItem, "m_Type", LootItemType.Item);
 					Helpers.SetField(packed, "m_Item", lootItem);
 					Helpers.SetField(packed, "m_Count", 1);
+					list.Add(packed);
 				}
 
 				newTable.ComponentsArray = list.ToArray();
