@@ -10,6 +10,7 @@ using Kingmaker;
 using System.Linq;
 using System.Collections.Generic;
 using Kingmaker.Blueprints;
+using BetterVendors.Vendors;
 
 namespace BetterVendors.Menus
 {
@@ -38,11 +39,14 @@ namespace BetterVendors.Menus
             {
                 if (GL.Button("Reload Library", falseWidth))
                 {
-                    Mod.Debug(Main.Library == null);
-                    Main.Library = ResourcesLibrary.LibraryObject;
-                    //Helpers.GuidStorage.load(Properties.Resources.blueprints, true);
-                    //Vendors.VendorBlueprints.CreateAllVendors();
-                    //Vendors.MechantGuild.CreateMerchantGuild();
+                    Library = ResourcesLibrary.LibraryObject;
+                    Helpers.Load();
+                    Helpers.Reload();
+                    
+                }
+                if (GL.Button("Create Vendor Tables", falseWidth))
+                {
+                    VendorTableBlueprints.CreateVendorTables();
                 }
                 if (GL.Button("Spawn Throne Vendors", falseWidth))
                 {

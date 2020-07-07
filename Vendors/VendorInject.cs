@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using BetterVendors.Utilities;
+using System.Reflection;
 
 
 namespace BetterVendors.Vendors
@@ -103,8 +104,10 @@ namespace BetterVendors.Vendors
             return searchResults;
         }
 
-        public static void addItemToVendor(string itemId, string vendorId)
+        public static void AddItemToVendor(string itemId, string vendorId)
         {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            Main.Mod.Debug(itemId +", " + vendorId);
             BlueprintSharedVendorTable sharedVendorTable = ResourcesLibrary.TryGetBlueprint<BlueprintSharedVendorTable>(vendorId);
             BlueprintScriptableObject blueprintScriptableObject = ResourcesLibrary.TryGetBlueprint<BlueprintScriptableObject>(itemId);
             BlueprintUnitLoot blueprintUnitLoot = ScriptableObject.CreateInstance<BlueprintUnitLoot>();

@@ -13,6 +13,7 @@ using UnityEngine;
 
 namespace BetterVendors.Vendors
 {
+    
     public class VendorBlueprints
     {
         static LibraryScriptableObject Library => Main.Library;
@@ -92,10 +93,200 @@ namespace BetterVendors.Vendors
                     "17c6f33ae6f54f599692abfec7e84024", //AnswerExitGuid
                     "GriswoldMerchant", //name
                     "Griswold", //DisplayName
-                    "Got some rare things on sale, stranger", //Description
+                    "What can I do you fer.", //Description
                     "5ec40f5a960494447af318080e7a4d58", //Prefab
-                    "b3bc1bb9f4a59f3438edc505e0f3b407", //VendorTableOriginal C3 large
+                    "03139ca71b2f2a34bae0a8a11a342fe4", //VendorTableOriginal C2 large
                     "" // VendorTableGuid
+                    ) },
+            { "3b8cbb604e63405da0449c9c388087d7",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "3b8cbb604e63405da0449c9c388087d7", //UnitGuid
+                    "3007fe899e1c431cb0b51da742ce76f6", //DialogGuid
+                    "5019dbb8ef9644aeaba92570be6b47fa", //CueGuid
+                    "1507fc1081ca4d96bd591ae3818c0bd0", //AnsListGuid
+                    "893ba702f81b4fb5877533c18368d9a2", //AnswerShowGuid
+                    "24aadd5f0a4c47cb98bbabeb803f9231", //AnswerExitGuid
+                    "NookMerchant", //name
+                    "Nook", //DisplayName
+                    "I'll be there with bells on! Ho Ho!", //Description
+                    "5e8b8c5216543b94fb863325409f0a0f", //Prefab
+                    "efa12e6fcc198a748875fea573e94175", //VendorTableOriginal C2 small
+                    "266185454c7e44549fbfa52288af3bf4" // VendorTableGuid
+                    ) },
+            { "164d8ddd554c4d53b8a7f20ac9cdba89",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "164d8ddd554c4d53b8a7f20ac9cdba89", //UnitGuid
+                    "8953babd3a12497cae9e7d4abf58bb0d", //DialogGuid
+                    "b7d4597db21c4fe2b8c9c984c93fb477", //CueGuid
+                    "bc684b1f79d84339919c41b94bacc138", //AnsListGuid
+                    "458b4825f6504e38a8941fc2e653c5e4", //AnswerShowGuid
+                    "2b7a543173874bb3910f53fed6899390", //AnswerExitGuid
+                    "BeedleMerchant", //name
+                    "Beedle", //DisplayName
+                    "Something good will happen to you! Something good indeed.", //Description
+                    "063e8f0e64d9b8d41a6a60bf5f13145c", //Prefab
+                    "9126c670f0743b647b4e9ba850214d8d", //VendorTableOriginal c3 large
+                    "3459b752099e498abf75d118cc0564e7" // VendorTableGuid
+                    ) },
+            { "MarcusTemp",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "78920ba3a51d407e89d4ff4bbf811310", //UnitGuid
+                    "f69ef2e9b8ef44bfa6d714ae97c16bc2", //DialogGuid
+                    "f461622e2b8c4e829c7a1e5a9c680d1f", //CueGuid
+                    "a698db720c0343d485650218cea2dde3", //AnsListGuid
+                    "0de89140dd4044eb843661217e20d5e0", //AnswerShowGuid
+                    "aa952ed7f068404ba211f9a0d91688c9", //AnswerExitGuid
+                    "MarcusMerchant", //name
+                    "Marcus", //DisplayName
+                    "If I can't find what you need, it can't be found in the stolen lands.", //Description
+                    "7913ffc3ada48db4ba3a5c9a99786312", //Prefab
+                    "1cfdec17b06a47740bacb7a7ea9dd0c6", //C61_IssiliVendorTable
+                    "847195acd5f94a68b1930d1162bc7005" // VendorTableGuid
+                    ) },
+            { "PatchesTemp",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "08089c7248134457b9c7c6eaf5afbec5", //UnitGuid
+                    "3a8629660a3c4fce8f76cb89e6140696", //DialogGuid
+                    "849ca17d591049d58eacd9cbc337f152", //CueGuid
+                    "15a77797867c484b87169da78d68b6df", //AnsListGuid
+                    "9117b8c4f7434b50975c4decf688da62", //AnswerShowGuid
+                    "9631b44a088e486fb64739b722c2a455", //AnswerExitGuid
+                    "PatchesMerchant", //name
+                    "Patches", //DisplayName
+                    "You've come for the trinkets haven't you?", //Description
+                    "29eb73d2b9159c34baf90994557e8693", //Prefab
+                    "8035c1313902fae4796d36065e769297", //VendorTableOriginal DLC2QuartermasterBaseTable
+                    "2eed726aaaeb40f9b4b68388fbeee954" // VendorTableGuid
+                    ) },
+            { "0856b394a0514e03b653115747a2c9bb",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "0856b394a0514e03b653115747a2c9bb", //UnitGuid
+                    "e7cb4ba3a97d47849b4ddaf1f42e9062", //DialogGuid
+                    "30a7c01c932c44479260b10d417bffad", //CueGuid
+                    "aa69870be8464b059aca535eda749d2a", //AnsListGuid
+                    "cda130d870a349158ac29d9790bfa041", //AnswerShowGuid
+                    "3d20f218d44946e0ba71afcc86a8a4b4", //AnswerExitGuid
+                    "TemMerchant", //name
+                    "Tem", //DisplayName
+                    "Us Tems have a deep history.", //Description
+                    "f487012651c0e134281e4031ba1b6a21", //Prefab
+                    "7c68519dca4334c408227bb0140ac50f", //VendorTableOriginal DLC2QuartermasterImprovedTable
+                    "67bf04711f384f9f8335b1ac8133f0d3" // VendorTableGuid
+                    ) },
+            { "0e8dc2a8630446c489a84197b3a56902",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "0e8dc2a8630446c489a84197b3a56902", //UnitGuid
+                    "5dcaa0c0028a48ceb05f8548b45e7be1", //DialogGuid
+                    "90517f6616004af68082993bcec0b89a", //CueGuid
+                    "ac6dc204e20a4683811386c5ed3a0f1b", //AnsListGuid
+                    "8ca32f65df264666ab9998719d66a255", //AnswerShowGuid
+                    "293a3eb35a8e4ea28c6a7eb4febc3017", //AnswerExitGuid
+                    "PorkrindMerchant", //name
+                    "Porkrind", //DisplayName
+                    "Welcome!", //Description
+                    "e152bbfbc5cc8524eba07c6842cc57bd", //Prefab
+                    "78e1aab1a8d9f4649ae83388c33283cd", //VendorTableOriginal Rushlight_GeneralistVendorTable
+                    "" // VendorTableGuid
+                    ) },
+            { "c94a3d4bd748431eb9b85ae7249f1d5f",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "c94a3d4bd748431eb9b85ae7249f1d5f", //UnitGuid
+                    "030cb3cb0b4447139a6c66bffc9674a9", //DialogGuid
+                    "507fba8d77d64fd59d767f637105788b", //CueGuid
+                    "6585c46b2a53472794d7de2a46594f1b", //AnsListGuid
+                    "988b33ca3a244d24a3a83ea6ad048fef", //AnswerShowGuid
+                    "4c6a62d8f61b44e39b6f1b4f184629c9", //AnswerExitGuid
+                    "MoiraMerchant", //name
+                    "Moira", //DisplayName
+                    "Take care, it's a big stolen land.", //Description
+                    "d9eafa69c92af8b438b33347d26c5206", //Prefab
+                    "2712cf5716e578f4e95165cb43dda8ae", //VendorTableOriginal Rushlight_MagicVendorTable
+                    "" // VendorTableGuid
+                    ) },
+            { "DrebinTemp",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "4d544e1766c94b3c98355f97e3eb50fd", //UnitGuid
+                    "f1f7d8c3c6c34f6d842d06ee5af73b1a", //DialogGuid
+                    "36d89abfefe0443bb28b71c96fbf0926", //CueGuid
+                    "931c636bf55a4b69937b09b60b8fc901", //AnsListGuid
+                    "1d083776acb04404be604885ca0be002", //AnswerShowGuid
+                    "4f14617012b64432bfb5bc2b259d9db5", //AnswerExitGuid
+                    "DrebinMerchant", //name
+                    "Drebin", //DisplayName
+                    "Drebins, we have yours.", //Description
+                    "28bf148747e268241888b801df484562", //Prefab
+                    "0d506a80e3f07544394d812ad7014cf3", //VendorTableOriginal Rushlight_SmithVendorTable
+                    "" // VendorTableGuid
+                    ) },
+            { "d044c070bc9c4129930307ae16fd17f8",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "d044c070bc9c4129930307ae16fd17f8", //UnitGuid
+                    "de1b8e4fb6124379a8dbd824489e24c0", //DialogGuid
+                    "d27a7ae9088a480983d6ae46ee3b8426", //CueGuid
+                    "fac7f26f318445c794b90aa5567eb3fb", //AnsListGuid
+                    "c9b2d81c791b4cc086e7e35fb15eaffc", //AnswerShowGuid
+                    "0a4095fff56243f6b059da7ea9921b6f", //AnswerExitGuid
+                    "GoblinMerchant", //name
+                    "Goblin Trader", //DisplayName
+                    "You ever been to Varnhold?", //Description
+                    "2db8287e83e344b4c8a2415d5750393e", //Prefab
+                    "488ce39f5594cff4f8a8228e95b091e3", //VendorTableOriginal C71_GoblinVendorTable
+                    "" // VendorTableGuid
+                    ) },
+            { "94f1d2c05db54a7ab7b0c25881dca72b",
+                new Vendor(
+                    Vendor.Area.MerchantGuild,
+                    new Vector3(21.8f, 0.0f, -6.0f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    true,
+                    "94f1d2c05db54a7ab7b0c25881dca72b", //UnitGuid
+                    "b6638b63c3bb4d98816d054a3e6015d5", //DialogGuid
+                    "cdb4bcfa9c2c425485b91a8c6ef7a615", //CueGuid
+                    "aab514b23760420d8b1a955ad31d1cc6", //AnsListGuid
+                    "5bace2ca61d946dbae734af66915b827", //AnswerShowGuid
+                    "9b8b0151d173472aa7f71348cf7a8575", //AnswerExitGuid
+                    "VoloMerchant", //name
+                    "Volo", //DisplayName
+                    "I know a bit about all things magical. Come see what I have collected on my travels.", //Description
+                    "43cfb6a02522db343b0f78d0cab62ed4", //Prefab
+                    "dce232e52e1943e89fcb1a8b2d123fa0", //VendorTableOriginal Custom
+                    "none" // VendorTableGuid
                     ) },
             { "bd9607a0746543068abf099290d5ba6b",
                 new Vendor(

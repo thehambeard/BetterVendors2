@@ -839,6 +839,30 @@ namespace BetterVendors.Utilities
     // - less `Helpers.` etc.
     public static class Helpers
     {
+        public static void Reload()
+        {
+            try
+            {
+#if DEBUG
+                bool allow_guid_generation = true;
+#else
+                bool allow_guid_generation = false; //no guids should be ever generated in release
+#endif
+                Helpers.GuidStorage.load(Properties.Resources.blueprints, allow_guid_generation);
+                //Vendors.VendorBlueprints.CreateAllVendors();
+                //Vendors.MechantGuild.CreateMerchantGuild();
+
+#if DEBUG
+                string guid_file_name = $@"{SettingsWrapper.ModPath}blueprints.txt";
+                Helpers.GuidStorage.dump(guid_file_name);
+#endif
+                Helpers.GuidStorage.dump($@"{SettingsWrapper.ModPath}loaded_blueprints.txt");
+            }
+            catch (Exception ex)
+            {
+                Main.Mod.Error(ex);
+            }
+        }
         public static class GuidStorage
         {
             static Dictionary<string, string> guids_in_use = new Dictionary<string, string>();
@@ -3073,6 +3097,8 @@ namespace BetterVendors.Utilities
         }
 
         static ValidationContext validation = new ValidationContext();
+
+        
     }
 
     [HarmonyLib.HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary")]
@@ -3084,27 +3110,7 @@ namespace BetterVendors.Utilities
             var self = __instance;
             if (Main.Library != null) return;
             Main.Library = self;
-            try
-            {
-#if DEBUG
-                bool allow_guid_generation = true;
-#else
-                bool allow_guid_generation = false; //no guids should be ever generated in release
-#endif
-                Helpers.GuidStorage.load(Properties.Resources.blueprints, allow_guid_generation);
-                Vendors.VendorBlueprints.CreateAllVendors();
-                Vendors.MechantGuild.CreateMerchantGuild();
-
-#if DEBUG
-                string guid_file_name = $@"{SettingsWrapper.ModPath}blueprints.txt";
-                Helpers.GuidStorage.dump(guid_file_name);
-#endif
-                Helpers.GuidStorage.dump($@"{SettingsWrapper.ModPath}loaded_blueprints.txt");
-            }
-            catch (Exception ex)
-            {
-                Main.Mod.Error(ex);
-            }
+            Helpers.Reload();
         }
     }
     public delegate void FastSetter<T, S>(T source, S value);

@@ -54,7 +54,7 @@ namespace BetterVendors.Menus
                             results = Vendors.VendorInject.SearchItems(searchString);
                             foreach (KeyValuePair<string, string> item in results)
                             {
-                                Vendors.VendorInject.addItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
+                                Vendors.VendorInject.AddItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
                             }
                         }
                         foreach (KeyValuePair<string, string> item in results.OrderBy(x => x.Value))
@@ -65,7 +65,7 @@ namespace BetterVendors.Menus
                                 bool flagAdd = GUILayout.Button(string.Format(Local["Menu_Txt_AddToVendor"], item.Value, vendors[vendorToolbar]), falseWidth);
                                 if (flagAdd)
                                 {
-                                    Vendors.VendorInject.addItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
+                                    Vendors.VendorInject.AddItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
                                     GUILayout.Label(Local["Menu_Txt_ItemAdded"], falseWidth);
                                 }
                             }

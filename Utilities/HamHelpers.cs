@@ -32,6 +32,7 @@ namespace BetterVendors.Utilities
         }
 
         public static bool InGame() { return Game.Instance.Player.ControllableCharacters.Any(); }
+
     }
 }
 
