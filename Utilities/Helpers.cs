@@ -849,8 +849,9 @@ namespace BetterVendors.Utilities
                 bool allow_guid_generation = false; //no guids should be ever generated in release
 #endif
                 Helpers.GuidStorage.load(Properties.Resources.blueprints, allow_guid_generation);
-                //Vendors.VendorBlueprints.CreateAllVendors();
-                //Vendors.MechantGuild.CreateMerchantGuild();
+                Vendors.VendorTableBlueprints.CreateVendorTables();
+                Vendors.VendorBlueprints.CreateAllVendors();
+                Vendors.MechantGuild.CreateMerchantGuild();
 
 #if DEBUG
                 string guid_file_name = $@"{SettingsWrapper.ModPath}blueprints.txt";

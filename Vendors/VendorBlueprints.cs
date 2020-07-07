@@ -132,7 +132,7 @@ namespace BetterVendors.Vendors
                     "BeedleMerchant", //name
                     "Beedle", //DisplayName
                     "Something good will happen to you! Something good indeed.", //Description
-                    "063e8f0e64d9b8d41a6a60bf5f13145c", //Prefab
+                    "6e8f58e9489bcb747beb203f72e807a2", //Prefab
                     "9126c670f0743b647b4e9ba850214d8d", //VendorTableOriginal c3 large
                     "3459b752099e498abf75d118cc0564e7" // VendorTableGuid
                     ) },
@@ -151,11 +151,11 @@ namespace BetterVendors.Vendors
                     "MarcusMerchant", //name
                     "Marcus", //DisplayName
                     "If I can't find what you need, it can't be found in the stolen lands.", //Description
-                    "7913ffc3ada48db4ba3a5c9a99786312", //Prefab
+                    "5324e8cdfb5a79a479eb5668a4f0ae1c", //Prefab
                     "1cfdec17b06a47740bacb7a7ea9dd0c6", //C61_IssiliVendorTable
                     "847195acd5f94a68b1930d1162bc7005" // VendorTableGuid
                     ) },
-            { "PatchesTemp",
+            { "08089c7248134457b9c7c6eaf5afbec5",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
                     new Vector3(21.8f, 0.0f, -6.0f),
@@ -170,7 +170,7 @@ namespace BetterVendors.Vendors
                     "PatchesMerchant", //name
                     "Patches", //DisplayName
                     "You've come for the trinkets haven't you?", //Description
-                    "29eb73d2b9159c34baf90994557e8693", //Prefab
+                    "f8dcfbcd0d6de5b4d8689479419ac930", //Prefab
                     "8035c1313902fae4796d36065e769297", //VendorTableOriginal DLC2QuartermasterBaseTable
                     "2eed726aaaeb40f9b4b68388fbeee954" // VendorTableGuid
                     ) },
@@ -189,7 +189,7 @@ namespace BetterVendors.Vendors
                     "TemMerchant", //name
                     "Tem", //DisplayName
                     "Us Tems have a deep history.", //Description
-                    "f487012651c0e134281e4031ba1b6a21", //Prefab
+                    "2d769df1ef63e964eb990c87f1de5026", //Prefab
                     "7c68519dca4334c408227bb0140ac50f", //VendorTableOriginal DLC2QuartermasterImprovedTable
                     "67bf04711f384f9f8335b1ac8133f0d3" // VendorTableGuid
                     ) },
@@ -208,7 +208,7 @@ namespace BetterVendors.Vendors
                     "PorkrindMerchant", //name
                     "Porkrind", //DisplayName
                     "Welcome!", //Description
-                    "e152bbfbc5cc8524eba07c6842cc57bd", //Prefab
+                    "9c6d635d9937580449ab6f02a8149053", //Prefab
                     "78e1aab1a8d9f4649ae83388c33283cd", //VendorTableOriginal Rushlight_GeneralistVendorTable
                     "" // VendorTableGuid
                     ) },
@@ -227,7 +227,7 @@ namespace BetterVendors.Vendors
                     "MoiraMerchant", //name
                     "Moira", //DisplayName
                     "Take care, it's a big stolen land.", //Description
-                    "d9eafa69c92af8b438b33347d26c5206", //Prefab
+                    "8e57c26884df05b4ab38f34538b72c28", //Prefab
                     "2712cf5716e578f4e95165cb43dda8ae", //VendorTableOriginal Rushlight_MagicVendorTable
                     "" // VendorTableGuid
                     ) },
@@ -246,7 +246,7 @@ namespace BetterVendors.Vendors
                     "DrebinMerchant", //name
                     "Drebin", //DisplayName
                     "Drebins, we have yours.", //Description
-                    "28bf148747e268241888b801df484562", //Prefab
+                    "903822fc596783f4c82d6ad217cdf4e1", //Prefab
                     "0d506a80e3f07544394d812ad7014cf3", //VendorTableOriginal Rushlight_SmithVendorTable
                     "" // VendorTableGuid
                     ) },
