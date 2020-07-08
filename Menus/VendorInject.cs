@@ -1,5 +1,6 @@
 ﻿using Kingmaker;
 using ModMaker;
+using ModMaker.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,12 @@ namespace BetterVendors.Menus
 
         public int Priority => 300;
 
-        string searchString = "";
+        private string searchString = "";
         private static GUILayoutOption[] falseWidth = new GUILayoutOption[] { GUILayout.ExpandWidth(false) };
         Dictionary<string, string> results = new Dictionary<string, string>();
         private static int vendorToolbar = 0;
-        string[] vendors = Vendors.VendorInject.VendorTableIds.Keys.ToArray();
+        private string[] vendors = Vendors.VendorInject.VendorTableIds.Keys.ToArray();
+        private string itemAdded = "";
 
         public void OnGUI(UnityModManager.ModEntry modEntry)
         {
@@ -36,8 +38,9 @@ namespace BetterVendors.Menus
                 GUILayout.Label(Local["Menu_Txt_Search"]);
                 using (new GL.HorizontalScope())
                 {
-                    searchString = GUILayout.TextField(searchString, 30, Array.Empty<GUILayoutOption>());
-                    if (GUILayout.Button(Local["Menu_Btn_Search"], falseWidth) && searchString != "")
+                    bool isDirty = false;
+                    GUIHelper.TextField(ref searchString, () => isDirty = true);
+                    if (isDirty && searchString.Length > 2)
                     {
                         results = Vendors.VendorInject.SearchItems(searchString);
                     }
@@ -66,8 +69,11 @@ namespace BetterVendors.Menus
                                 if (flagAdd)
                                 {
                                     Vendors.VendorInject.AddItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
-                                    GUILayout.Label(Local["Menu_Txt_ItemAdded"], falseWidth);
+                                    itemAdded = item.Key;
+                                    
                                 }
+                                if (item.Key.Equals(itemAdded))
+                                    GUILayout.Label(Local["Menu_Txt_ItemAdded"], falseWidth);
                             }
                         }
                     }

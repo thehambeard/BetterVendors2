@@ -1,9 +1,14 @@
-﻿using Kingmaker.PubSubSystem;
+﻿using BetterVendors.Utilities;
+using Kingmaker.PubSubSystem;
 using ModMaker;
 using System;
 using System.Reflection;
+using System.Collections.Generic;
+using UnityEngine;
 using static BetterVendors.Main;
 using static BetterVendors.Utilities.SettingsWrapper;
+using BetterVendors.Vendors;
+using ModMaker.Utility;
 
 namespace BetterVendors
 {
@@ -18,8 +23,8 @@ namespace BetterVendors
             Mod.ResetSettings();
             Mod.Settings.lastModVersion = Mod.Version.ToString();
             LocalizationFileName = Local.FileName;
+            VendorBlueprints.ResetPositions();
         }
-
         public void HandleModEnable()
         {
             Mod.Debug(MethodBase.GetCurrentMethod());
@@ -28,7 +33,8 @@ namespace BetterVendors
                 Local.Import(LocalizationFileName, e => Mod.Error(e));
                 LocalizationFileName = Local.FileName;
             }
-            if (!Version.TryParse(Mod.Settings.lastModVersion, out Version version) || version < new Version(0, 0, 0))
+            
+            if (!Version.TryParse(Mod.Settings.lastModVersion, out Version version) || version < new Version(2, 0, 0))
                 ResetSettings();
             else
             {

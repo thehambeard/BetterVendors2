@@ -8,6 +8,7 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.PubSubSystem;
 using Kingmaker.View.Roaming;
 using ModMaker;
+using QuickGraph;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -32,17 +33,16 @@ namespace BetterVendors.Vendors
 
         public void OnAreaLoadingComplete()
         {
-
+            HandleSceneLoaded();
         }
 
         public void OnAreaScenesLoaded()
         {
-            HandleSceneLoaded();
+            
         }
 
         public static void CreateMerchantGuild()
         {
-
             var merchGuildEpBp = Library.CopyAndAdd<BlueprintAreaEnterPoint>(capLibEP, "MerchantGuildEp", merchGuildEpId);
             var merchGuildBp = Library.CopyAndAdd<BlueprintArea>(capLib, "MerchantGuild", merchGuildId);
             Helpers.SetField(merchGuildEpBp, "m_Area", merchGuildBp);
@@ -61,10 +61,9 @@ namespace BetterVendors.Vendors
 
             Game.Instance.Player.MainCharacter.Value.Position = new Vector3(16.5f, 0.1f, -0.5f);
 
-            if (Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] == 0 && !force)
+            if (Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] == 0 || force)
             {
-
-                foreach (UnitEntityData e in Game.Instance.State.Units.All)
+                foreach (UnitEntityData e in Kingmaker.Game.Instance.State.Units)
                 {
                     if (!e.IsMainCharacter)
                         e.Destroy();
@@ -78,6 +77,7 @@ namespace BetterVendors.Vendors
                 Game.Instance.CurrentlyLoadedArea.AreaName = Helpers.CreateString("MerchantGuild", "Merchant Guild");
                 foreach (KeyValuePair<string, Vendor> kvp in VendorBlueprints.NewVendors.Where(n => n.Value.AreaId == Vendor.Area.MerchantGuild))
                 {
+                    
                     kvp.Value.Spawn();
                 }
                 Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] = 1;

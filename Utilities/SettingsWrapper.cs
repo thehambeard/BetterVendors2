@@ -1,6 +1,7 @@
 ﻿using static BetterVendors.Main;
 using System.Collections.Generic;
 using UnityEngine;
+using ModMaker.Utility;
 
 namespace BetterVendors.Utilities
 {
@@ -62,6 +63,17 @@ namespace BetterVendors.Utilities
         {
             get => Mod.Settings.toggleShowTrash;
             set => Mod.Settings.toggleShowTrash = value;
+        }
+
+        public static SerializableDictionary<string, Vector3> Positions
+        {
+            get => Mod.Settings.positions;
+            set => Mod.Settings.positions = value;
+        }
+        public static SerializableDictionary<string, Vector3> Rotations
+        {
+            get => Mod.Settings.rotations;
+            set => Mod.Settings.rotations = value;
         }
     }
 }

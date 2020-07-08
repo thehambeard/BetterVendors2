@@ -11,6 +11,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Kingmaker.Blueprints;
 using BetterVendors.Vendors;
+using Kingmaker.Designers;
+using Kingmaker.Blueprints.Area;
 
 namespace BetterVendors.Menus
 {
@@ -37,27 +39,46 @@ namespace BetterVendors.Menus
         {
             using (new GUISubScope("Debug", "box"))
             {
+                var position = Game.Instance.Player.MainCharacter.Value.Position;
+                var rotation = Game.Instance.Player.MainCharacter.Value.OrientationDirection;
+                var combined = $"{position.x}f, {position.y}f, {position.z}f {rotation.x}f, {rotation.y}f, {rotation.z}f";
+                GL.TextField(combined, falseWidth);
+                if (GL.Button("TP Throne Room", falseWidth))
+                {
+                    GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>("21fb2ff53d1e2fb4c9b06f067ab89435"), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
+                }
+                if (GL.Button("TP Stone Throne", falseWidth))
+                {
+                    GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>("3a9748aba32e1694f80a6cae9b7b3f99"), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
+                }
                 if (GL.Button("Reload Library", falseWidth))
                 {
                     Library = ResourcesLibrary.LibraryObject;
                     Helpers.Load();
                     Helpers.Reload();
-                    
-                }
-                if (GL.Button("Create Vendor Tables", falseWidth))
-                {
-                    VendorTableBlueprints.CreateVendorTables();
                 }
                 if (GL.Button("Spawn Throne Vendors", falseWidth))
                 {
                     Vendors.ThroneRoom.HandleAreaLoad();
                 }
-                if (GL.Button("Despawn Vendors", falseWidth))
+                if (GL.Button("Despawn Throne Vendors", falseWidth))
                 {
                     foreach (KeyValuePair<string, Vendors.Vendor> kvp in Vendors.VendorBlueprints.NewVendors.Where(n => n.Value.AreaId == Vendors.Vendor.Area.ThroneRoom))
                     {
                         kvp.Value.Destroy();
                     }
+                }
+                if (GL.Button("Recreate Vendors", falseWidth))
+                {
+                    VendorBlueprints.CreateAllVendors();
+                }
+                if (GL.Button("Reset Vendors", falseWidth))
+                {
+                    VendorBlueprints.ResetPositions();
+                }
+                if (GL.Button("Respawn Guild", falseWidth))
+                {
+                    MechantGuild.LibraryLoad(true);
                 }
             }
         }
@@ -103,8 +124,12 @@ namespace BetterVendors.Menus
                     GL.Label(string.Format("{0}: ", vendor.DisplayName), MenuHelpers.LabelStyleFixed, falseWidth);
                     if (GL.Button(Local["Menu_Btn_MoveVendor"], MenuHelpers.ButtonStyle, falseWidth))
                     {
-                        vendor.Move(Game.Instance.Player.MainCharacter.Value.Position, 
-                            Game.Instance.Player.MainCharacter.Value.OrientationDirection);
+                        var position = Game.Instance.Player.MainCharacter.Value.Position;
+                        var rotation = Game.Instance.Player.MainCharacter.Value.OrientationDirection;
+
+                        SettingsWrapper.Positions[vendor.UnitGuid] = position;
+                        SettingsWrapper.Rotations[vendor.UnitGuid] = rotation;
+                        vendor.Move(position, rotation);
                     }
                 }
             }

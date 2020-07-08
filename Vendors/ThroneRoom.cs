@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using BetterVendors.Utilities;
-
+using UnityEngine;
 
 namespace BetterVendors.Vendors
 {
@@ -26,8 +26,6 @@ namespace BetterVendors.Vendors
         }
         public void OnAreaScenesLoaded()
         {
-            Main.Mod.Debug(MethodBase.GetCurrentMethod());
-
         }
 
         public static void HandleAreaLoad()
@@ -37,11 +35,11 @@ namespace BetterVendors.Vendors
             if (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||
                 Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092"))
             {
-                HamHelpers.updateAreaUnitGuids();
                 foreach (KeyValuePair<string, Vendor> kvp in VendorBlueprints.NewVendors.Where(n => n.Value.AreaId == Vendor.Area.ThroneRoom))
                 {
-                    if (!HamHelpers.AreaUnitGuids.Contains(kvp.Value.UnitGuid))
-                        kvp.Value.Spawn();
+                    kvp.Value.Posistion = SettingsWrapper.Positions[kvp.Key];
+                    kvp.Value.Rotation = Quaternion.LookRotation(SettingsWrapper.Rotations[kvp.Key]);
+                    kvp.Value.Spawn();
                 }
             }
         }

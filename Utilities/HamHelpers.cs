@@ -5,21 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace BetterVendors.Utilities
 {
     public static class HamHelpers
     {
-        public static HashSet<string> AreaUnitGuids = new HashSet<string>();
-        public static void updateAreaUnitGuids()
-        {
-            AreaUnitGuids.Clear();
-            foreach (UnitEntityData ud in Game.Instance.State.Units)
-            {
-                AreaUnitGuids.Add(ud.Blueprint.AssetGuid);
-            }
-        }
-
+        
         public static bool InThroneRoom()
         {
             return (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||
@@ -33,6 +25,12 @@ namespace BetterVendors.Utilities
 
         public static bool InGame() { return Game.Instance.Player.ControllableCharacters.Any(); }
 
+        public static Vector3 StringToVector3(string s)
+        {
+            string[] cords = s.Split(' ');
+            if (cords.Length != 3) return new Vector3();
+            return new Vector3(float.Parse(cords[0]), float.Parse(cords[1]), float.Parse(cords[2]));
+        }
     }
 }
 

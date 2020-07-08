@@ -15,6 +15,8 @@ Issili, and a vendor that has most of the items that are unobtainable.
 * Throne room vendors have only basic dialog now for quick interaction
 * Removed enabling/disabling individual throne room vendors, unnecessary feature
 * Moved arcane vendor progression from arsinoe to zarci
+* No longer need to hit the search button for vendor inject, list will update as you type after the 3rd character is typed
+* Vendor inject will now confirm that you added the item to the vendor
 
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
@@ -22,7 +24,6 @@ Issili, and a vendor that has most of the items that are unobtainable.
 * Add support for DLC
 * Figure out the locations of all the vendors, as of now they spawn on top of eachother
 * Revist vendor progression code for improvements, bugs, etc. 
-* Bug: Moving vendors after load duplicates vendor
 * Bug: Highlighting seems to no longer work after moving to Harmony 2.0?
 
 ## Notes:

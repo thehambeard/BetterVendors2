@@ -30,15 +30,14 @@ namespace BetterVendors.Vendors
         public string VendorTableGuid { get; private set; }
         public bool HasSpawned { get; private set; }
         public bool Enabled { get; private set; }
-        public Vector3 Posistion { get; private set; }
-        public Quaternion Rotation { get; private set; }
+        public Vector3 Posistion { get; set; }
+        public Quaternion Rotation { get; set; }
         public bool Shared { get; private set; }
 
         private static LibraryScriptableObject Library => Main.Library;
 
         public Vendor(Area areaId, Vector3 posistion, Quaternion rotation, bool enabled, string unitGuid, string dialogGuid, string cueGuid, string ansListGuid, string answerShowGuid, string answerExitGuid, string name, string displayName, string description, string prefabId, string vendorTableOrig, string vendorTableGuid, bool shared)
         {
-            Main.Mod.Debug(MethodBase.GetCurrentMethod());
             this.AreaId = areaId;
             this.Posistion = posistion;
             this.Rotation = rotation;
@@ -62,7 +61,6 @@ namespace BetterVendors.Vendors
         public void Spawn()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            Main.Mod.Debug(HamHelpers.AreaUnitGuids.Count);
             this.Destroy();
             this.EntityData = Game.Instance.EntityCreator.SpawnUnit((BlueprintUnit)Library.BlueprintsByAssetId[this.UnitGuid], this.Posistion, this.Rotation, Game.Instance.CurrentScene.MainState);
         }
@@ -70,8 +68,14 @@ namespace BetterVendors.Vendors
         public void Destroy()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            Main.Mod.Debug(this.UnitGuid);
+            Main.Mod.Debug(this.EntityData);
             if(this.EntityData == null) this.EntityData = GetDataById(this.UnitGuid);
-            if (this.EntityData != null) this.EntityData.Destroy();
+            if (this.EntityData != null)
+            {
+                this.EntityData.Destroy();
+                this.EntityData = null;
+            }
         }
 
         private static UnitEntityData GetDataById(string id)
@@ -88,7 +92,6 @@ namespace BetterVendors.Vendors
         public void Move(Vector3 posistion, Vector3 rotation)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            
             this.Posistion = posistion;
             this.Rotation = Quaternion.LookRotation(rotation);
             this.Spawn();

@@ -7,17 +7,41 @@ using Kingmaker.Localization;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Interaction;
 using Kingmaker.Utility;
+using ModMaker;
+using ModMaker.Utility;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using static BetterVendors.Utilities.SettingsWrapper;
 
 namespace BetterVendors.Vendors
 {
     
-    public class VendorBlueprints
+    public class VendorBlueprints : IModEventHandler
     {
+        
+        public static Dictionary<string, string> CloneGuids = new Dictionary<string, string>
+        {
+            {"arsinoe", "ae8de86d673a43aaa3c96b62978ac75b" },
+            {"hassuf" , "bd9607a0746543068abf099290d5ba6b" },
+            {"zarcie" , "dcf8a96cb8234654a1d9b66ba5e8f81d" },
+            {"verdal" , "803e8f2fdd85417da9653b79dd2bd528" }
+        };
+
+        //defaults
+        private static readonly Vector3 verdalPos = new Vector3(-1.1f, 0.6f, 7.5f);
+        private static readonly Vector3 verdalRot = new Vector3(0.46f, 0, -0.88f);
+        private static readonly Vector3 zarciePos = new Vector3(0.5f, 1.6f, 7.6f);
+        private static readonly Vector3 zarcieRot = new Vector3(-0.48f, 0, -0.87f);
+        private static readonly Vector3 hassufPos = new Vector3(-5.0f, 0.6f, 7.2f);
+        private static readonly Vector3 hassufRot = new Vector3(-0.46f, 0, -0.88f);
+        private static readonly Vector3 arsinoePos = new Vector3(-7.2f, 0.6f, 8.5f);
+        private static readonly Vector3 arsinoeRot = new Vector3(-0.07f, 0, -0.99f);
+
         static LibraryScriptableObject Library => Main.Library;
+
+        public int Priority => 600;
 
         public static Dictionary<string, Vendor> NewVendors = new Dictionary<string, Vendor>
         {
@@ -102,8 +126,8 @@ namespace BetterVendors.Vendors
             { "3b8cbb604e63405da0449c9c388087d7",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(21.8f, 0.0f, 7.7f),
+                    Quaternion.LookRotation(new Vector3(-1.0f, 0f, 0.0f)),
                     true,
                     "3b8cbb604e63405da0449c9c388087d7", //UnitGuid
                     "3007fe899e1c431cb0b51da742ce76f6", //DialogGuid
@@ -121,7 +145,7 @@ namespace BetterVendors.Vendors
             { "164d8ddd554c4d53b8a7f20ac9cdba89",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
+                    new Vector3(21.7f, 0.0f, 11.2f),
                     Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
                     true,
                     "164d8ddd554c4d53b8a7f20ac9cdba89", //UnitGuid
@@ -140,8 +164,8 @@ namespace BetterVendors.Vendors
             { "78920ba3a51d407e89d4ff4bbf811310",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(20.4f, 0.0f, -8.8f),
+                    Quaternion.LookRotation(new Vector3( -0.8f, 0f, 0.5f)),
                     true,
                     "78920ba3a51d407e89d4ff4bbf811310", //UnitGuid
                     "f69ef2e9b8ef44bfa6d714ae97c16bc2", //DialogGuid
@@ -159,8 +183,8 @@ namespace BetterVendors.Vendors
             { "08089c7248134457b9c7c6eaf5afbec5",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(13.0f, 0.0f, -22.8f),
+                    Quaternion.LookRotation(new Vector3( 0.3f, 0f, 0.9f)),
                     true,
                     "08089c7248134457b9c7c6eaf5afbec5", //UnitGuid
                     "3a8629660a3c4fce8f76cb89e6140696", //DialogGuid
@@ -178,8 +202,8 @@ namespace BetterVendors.Vendors
             { "0856b394a0514e03b653115747a2c9bb",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(19.0f, 0.0f, -22.4f),
+                    Quaternion.LookRotation(new Vector3( -0.9f, 0f, 0.2f)),
                     true,
                     "0856b394a0514e03b653115747a2c9bb", //UnitGuid
                     "e7cb4ba3a97d47849b4ddaf1f42e9062", //DialogGuid
@@ -197,8 +221,8 @@ namespace BetterVendors.Vendors
             { "0e8dc2a8630446c489a84197b3a56902",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(18.8f, 0.0f, -28.4f),
+                    Quaternion.LookRotation(new Vector3( -0.5f, 0f, 0.8f)),
                     true,
                     "0e8dc2a8630446c489a84197b3a56902", //UnitGuid
                     "5dcaa0c0028a48ceb05f8548b45e7be1", //DialogGuid
@@ -216,8 +240,8 @@ namespace BetterVendors.Vendors
             { "c94a3d4bd748431eb9b85ae7249f1d5f",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(12.9f, 0.0f, -28.5f),
+                    Quaternion.LookRotation(new Vector3( 0.4f, 0f, 0.8f)),
                     true,
                     "c94a3d4bd748431eb9b85ae7249f1d5f", //UnitGuid
                     "030cb3cb0b4447139a6c66bffc9674a9", //DialogGuid
@@ -235,8 +259,8 @@ namespace BetterVendors.Vendors
             { "4d544e1766c94b3c98355f97e3eb50fd",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(25.4f, 0.0f, -22.3f),
+                    Quaternion.LookRotation(new Vector3( -0.9f, 0f, 0.0f)),
                     true,
                     "4d544e1766c94b3c98355f97e3eb50fd", //UnitGuid
                     "f1f7d8c3c6c34f6d842d06ee5af73b1a", //DialogGuid
@@ -254,8 +278,8 @@ namespace BetterVendors.Vendors
             { "d044c070bc9c4129930307ae16fd17f8",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(1.2f, 0.0f, -18.3f),
+                    Quaternion.LookRotation(new Vector3( 0.0f, 0f, -1.0f)),
                     true,
                     "d044c070bc9c4129930307ae16fd17f8", //UnitGuid
                     "de1b8e4fb6124379a8dbd824489e24c0", //DialogGuid
@@ -273,8 +297,8 @@ namespace BetterVendors.Vendors
             { "94f1d2c05db54a7ab7b0c25881dca72b",
                 new Vendor(
                     Vendor.Area.MerchantGuild,
-                    new Vector3(21.8f, 0.0f, -6.0f),
-                    Quaternion.LookRotation(new Vector3(-1.0f, 0.0f, 0.0f)),
+                    new Vector3(4.3f, 0.0f, -28.7f),
+                    Quaternion.LookRotation(new Vector3( -0.9f, 0f, -0.0f )),
                     true,
                     "94f1d2c05db54a7ab7b0c25881dca72b", //UnitGuid
                     "b6638b63c3bb4d98816d054a3e6015d5", //DialogGuid
@@ -289,13 +313,13 @@ namespace BetterVendors.Vendors
                     "dce232e52e1943e89fcb1a8b2d123fa0", //VendorTableOriginal Custom
                     "none",  true //VendorTableGuid
                     ) },
-            { "bd9607a0746543068abf099290d5ba6b",
+            { CloneGuids["hassuf"],
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
-                    new Vector3(-5.0f, 0.6f, 7.2f),
-                    Quaternion.LookRotation(new Vector3(-0.46f, 0, -0.88f)),
+                    hassufPos,
+                    Quaternion.LookRotation(hassufRot),
                     true,
-                    "bd9607a0746543068abf099290d5ba6b", //UnitGuid
+                    CloneGuids["hassuf"], //UnitGuid
                     "f57c3145fc3b4946a2301168ea77b749", //DialogGuid
                     "0910f95f84bb4b0a8eb1704a4bd66c6d", //CueGuid
                     "b3131e685b364fddb63efa5e4cd7c945", //AnsListGuid
@@ -308,13 +332,13 @@ namespace BetterVendors.Vendors
                     "8c17a31b6a9a6eb4cbb668902e9edcb1", //firstvendortable
                     "none",  true //VendorTableGuid
                     ) },
-            { "803e8f2fdd85417da9653b79dd2bd528",
+            { CloneGuids["verdal"],
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
-                    new Vector3(-1.1f, 0.6f, 7.5f),
-                    Quaternion.LookRotation(new Vector3(0.46f, 0, -0.88f)),
+                    verdalPos,
+                    Quaternion.LookRotation(verdalRot),
                     true,
-                    "803e8f2fdd85417da9653b79dd2bd528", //UnitGuid
+                    CloneGuids["verdal"], //UnitGuid
                     "65175fc690e748f39760c2f1dbb57cda", //DialogGuid
                     "8da93cfafa4f43d4ac668fd29baec76d", //CueGuid
                     "a43c2f192b394ec8ae4da8a4c4e95f63", //AnsListGuid
@@ -327,13 +351,13 @@ namespace BetterVendors.Vendors
                     "7de959347266092448d8a72089ef9778", //VendorTableOriginal 
                     "none",  true //VendorTableGuid
                     ) },
-            { "dcf8a96cb8234654a1d9b66ba5e8f81d",
+            { CloneGuids["zarcie"],
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
-                    new Vector3(0.5f, 1.6f, 7.6f),
-                    Quaternion.LookRotation(new Vector3(-0.48f, 0, -0.87f)),
+                    zarciePos,
+                    Quaternion.LookRotation(zarcieRot),
                     true,
-                    "dcf8a96cb8234654a1d9b66ba5e8f81d", //UnitGuid
+                    CloneGuids["zarcie"], //UnitGuid
                     "5d1f75fcd11c49678234049aacabb0b4", //DialogGuid
                     "83e0b988af3b4565a93d62e6914298ca", //CueGuid
                     "a866396da73b42f3ad47f764b463a5c1", //AnsListGuid
@@ -346,13 +370,13 @@ namespace BetterVendors.Vendors
                     "5450d563aab78134196ee9a932e88671", //VendorTableOriginal 
                     "none",  true //VendorTableGuid
                     ) },
-            { "ae8de86d673a43aaa3c96b62978ac75b",
+            { CloneGuids["arsinoe"],
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
-                    new Vector3(-7.2f, 0.6f, 8.5f),
-                    Quaternion.LookRotation(new Vector3(-0.07f, 0, -0.99f)),
+                    arsinoePos,
+                    Quaternion.LookRotation(arsinoeRot),
                     true,
-                    "ae8de86d673a43aaa3c96b62978ac75b", //UnitGuid
+                    CloneGuids["arsinoe"], //UnitGuid
                     "027ad6e4e13545039b1a45ff1eb0cc04", //DialogGuid
                     "d030e275030a40598857bae6087eb050", //CueGuid
                     "1db8726f34964ef0837f19b03eaba034", //AnsListGuid
@@ -381,6 +405,8 @@ namespace BetterVendors.Vendors
         public static void CreateSharedVendor(Vendor ven)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            Main.Mod.Debug(ven.Name);
+            Main.Mod.Debug(ven.UnitGuid);
             try
             {
                 var unit = Library.CopyAndAdd<BlueprintUnit>("e0449cfcf8ad6084ebfc161fb73e9a27", ven.Name, ven.UnitGuid);
@@ -488,5 +514,32 @@ namespace BetterVendors.Vendors
                 Main.Mod.Debug(ex.Message);
             }
         }
+
+        public static void ResetPositions()
+        {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            Positions = new SerializableDictionary<string, Vector3>();
+            Rotations = new SerializableDictionary<string, Vector3>();
+            Positions.Add(CloneGuids["hassuf"], hassufPos);
+            Rotations.Add(CloneGuids["hassuf"], hassufRot);
+            Positions.Add(CloneGuids["zarcie"], zarciePos);
+            Rotations.Add(CloneGuids["zarcie"], zarcieRot);
+            Positions.Add(CloneGuids["arsinoe"], arsinoePos);
+            Rotations.Add(CloneGuids["arsinoe"], arsinoeRot);
+            Positions.Add(CloneGuids["verdal"], verdalPos);
+            Rotations.Add(CloneGuids["verdal"], verdalRot);
+        }
+
+        public void HandleModEnable()
+        {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            foreach (KeyValuePair<string, string> kvp in CloneGuids)
+            {
+                NewVendors[kvp.Value].Posistion = Positions[kvp.Value];
+                NewVendors[kvp.Value].Rotation = Quaternion.LookRotation(Rotations[kvp.Value]);
+            }
+        }
+
+        public void HandleModDisable() { }
     }
 }

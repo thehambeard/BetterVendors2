@@ -2,12 +2,6 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items;
 using Kingmaker.Blueprints.Loot;
-using Kingmaker.Designers.EventConditionActionSystem.Actions;
-using Kingmaker.DialogSystem.Blueprints;
-using Kingmaker.Localization;
-using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Interaction;
-using Kingmaker.Utility;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
