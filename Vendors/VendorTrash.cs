@@ -36,8 +36,9 @@ namespace BetterVendors.Vendors
         {
             Mod.Debug(MethodBase.GetCurrentMethod());
 
-            bool control = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+            bool control = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) ;
 
+            Mod.Debug(control);
             if (control && ToggleVendorTrash && Mod.Enabled)
             {
                 if (!slot.Item.IsNonRemovable && VendorTrashItems.Contains(slot.Item.Blueprint.AssetGuid) && slot.Index != -1)
@@ -112,7 +113,6 @@ namespace BetterVendors.Vendors
     {
         public static void HighlightSlots(Kingmaker.UI.ServiceWindow.ItemSlot itemSlot)
         {
-
             if (itemSlot.Index != -1 && itemSlot.HasItem && VendorTrashItems.Contains(itemSlot.Item.Blueprint.AssetGuid) && ToggleVendorTrash && Mod.Enabled)
             {
                 itemSlot.ItemImage.color = TrashColor;

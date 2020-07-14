@@ -1,5 +1,5 @@
 # BetterVendors
-A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/lucianposton/KingmakerModMaker) is required to compile.
+A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton
 
 ## Version 2.0.0
 * Moved Entire code base to Harmony 2.0
@@ -21,11 +21,7 @@ Issili, and a vendor that has most of the items that are unobtainable.
 
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
-* Rework hacky source code
-* Add support for DLC
 * Revist vendor progression code for improvements, bugs, etc. 
-* Bug: Highlighting seems to no longer work after moving to Harmony 2.0?
-* Refresh vendors inventory ui if an item is injected.
 
 ## Notes:
 * Before upgrading to 2.0 of the mod despawn the throne room vendors
