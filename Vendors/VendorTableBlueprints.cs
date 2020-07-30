@@ -90,7 +90,7 @@ namespace BetterVendors.Vendors
 			Main.Mod.Debug(MethodBase.GetCurrentMethod());
 			foreach(KeyValuePair<string, NewVendorTable> vendors in vendorTables)
             {
-				var newTable = ScriptableObject.CreateInstance<BlueprintSharedVendorTable>();
+				var newTable = SerializedScriptableObject.CreateInstance<BlueprintSharedVendorTable>();
 				
 				newTable.name = vendors.Value.Name;
 				newTable.AutoIdentifyAllItems = vendors.Value.AutoId;
@@ -103,7 +103,7 @@ namespace BetterVendors.Vendors
                 {
 					var blueprintScriptableObject = ResourcesLibrary.TryGetBlueprint<BlueprintScriptableObject>(blueprintGuid);
 					var lootItem = new LootItem();
-					var packed = ScriptableObject.CreateInstance<LootItemsPackFixed>();
+					var packed = SerializedScriptableObject.CreateInstance<LootItemsPackFixed>();
 					Helpers.SetField(lootItem, "m_Item", blueprintScriptableObject as BlueprintItem);
 					Helpers.SetField(lootItem, "m_Type", LootItemType.Item);
 					Helpers.SetField(packed, "m_Item", lootItem);

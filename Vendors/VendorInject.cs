@@ -81,16 +81,15 @@ namespace BetterVendors.Vendors
 
         public static Dictionary<string, string> SearchItems(string item)
         {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
             Dictionary<string, string> searchResults = new Dictionary<string, string>();
-            List<BlueprintScriptableObject> blueprints = ResourcesLibrary.LibraryObject.GetAllBlueprints();
-            if (item != "" && blueprints != null)
+            if (item != "" && Main.Library.BlueprintsByAssetId != null)
             {
-                for (int i = 0; i < blueprints.Count; i++)
+                foreach(KeyValuePair<string, BlueprintScriptableObject> blueprint in ResourcesLibrary.LibraryObject.BlueprintsByAssetId)
                 {
-                    BlueprintScriptableObject blueprintScriptableObject = blueprints[i];
-                    if (validItemTypes.Contains(blueprintScriptableObject.GetType().Name))
+                    if (validItemTypes.Contains(blueprint.Value.GetType().Name))
                     {
-                        BlueprintItem blueprintItem = blueprintScriptableObject as BlueprintItem;
+                        BlueprintItem blueprintItem = blueprint.Value as BlueprintItem;
                         if (((blueprintItem.Name.IndexOf(item, StringComparison.InvariantCultureIgnoreCase) >= 0) ||
                             (blueprintItem.SubtypeName.IndexOf(item, StringComparison.InvariantCultureIgnoreCase) >= 0)) &&
                             !(blueprintItem.AssetGuid.IndexOf("#CraftMagicItems", StringComparison.InvariantCultureIgnoreCase) >= 00))
@@ -109,16 +108,16 @@ namespace BetterVendors.Vendors
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             Main.Mod.Debug(itemId +", " + vendorId);
             BlueprintSharedVendorTable sharedVendorTable = ResourcesLibrary.TryGetBlueprint<BlueprintSharedVendorTable>(vendorId);
-            BlueprintScriptableObject blueprintScriptableObject = ResourcesLibrary.TryGetBlueprint<BlueprintScriptableObject>(itemId);
-            BlueprintUnitLoot blueprintUnitLoot = ScriptableObject.CreateInstance<BlueprintUnitLoot>();
-            LootItemsPackFixed lootItemsPackFixed = ScriptableObject.CreateInstance<LootItemsPackFixed>();
+            BlueprintScriptableObject BlueprintScriptableObject = ResourcesLibrary.TryGetBlueprint<BlueprintScriptableObject>(itemId);
+            BlueprintUnitLoot blueprintUnitLoot = SerializedScriptableObject.CreateInstance<BlueprintUnitLoot>();
+            LootItemsPackFixed lootItemsPackFixed = SerializedScriptableObject.CreateInstance<LootItemsPackFixed>();
             LootItem lootItem = new LootItem();
-            Helpers.SetField(lootItem, "m_Item", blueprintScriptableObject as BlueprintItem);
+            Helpers.SetField(lootItem, "m_Item", BlueprintScriptableObject as BlueprintItem);
             Helpers.SetField(lootItem, "m_Type", LootItemType.Item);
             Helpers.SetField(lootItemsPackFixed, "m_Item", lootItem);
             Helpers.SetField(lootItemsPackFixed, "m_Count", 1);
             blueprintUnitLoot.ComponentsArray = new BlueprintComponent[] { lootItemsPackFixed };
-            AddItemsToVendor add = ScriptableObject.CreateInstance<AddItemsToVendor>();
+            AddItemsToVendor add = SerializedScriptableObject.CreateInstance<AddItemsToVendor>();
             add.SharedVendor = sharedVendorTable;
             add.Loot = blueprintUnitLoot.GenerateItems();
             add.RunAction();

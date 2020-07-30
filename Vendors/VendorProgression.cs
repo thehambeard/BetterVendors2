@@ -202,8 +202,7 @@ namespace BetterVendors.Vendors
 
             var vendorTable = ResourcesLibrary.TryGetBlueprint<BlueprintSharedVendorTable>(vendorTableId);
             var components = ConvertItemsToLoot(items, amountToAdd);
-            var adder = ScriptableObject
-                .CreateInstance<Kingmaker.Designers.EventConditionActionSystem.Actions.AddItemsToVendor>();
+            var adder = SerializedScriptableObject.CreateInstance<Kingmaker.Designers.EventConditionActionSystem.Actions.AddItemsToVendor>();
             adder.Loot = components.GenerateItems();
             adder.SharedVendor = vendorTable;
             adder.RunAction();
@@ -211,12 +210,12 @@ namespace BetterVendors.Vendors
 
         static BlueprintUnitLoot ConvertItemsToLoot<T>(List<T> items, int amountToAdd = 99)
         {
-            var result = ScriptableObject.CreateInstance<BlueprintUnitLoot>();
+            var result = SerializedScriptableObject.CreateInstance<BlueprintUnitLoot>();
             var components = new BlueprintComponent[items.Count()];
             var itemsAdded = 0;
             foreach (var item in items)
             {
-                var lootComponent = ScriptableObject.CreateInstance<LootItemsPackFixed>();
+                var lootComponent = SerializedScriptableObject.CreateInstance<LootItemsPackFixed>();
                 var lootItem = new LootItem();
                 Helpers.SetField(lootItem, "m_Item", item);
                 Helpers.SetField(lootItem, "m_Type", LootItemType.Item);

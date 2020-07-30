@@ -415,7 +415,7 @@ namespace BetterVendors.Vendors
                 var answersList = Library.CopyAndAdd<BlueprintAnswersList>("e30c7b55e7c8a6249a1334c4442414de", cueBase.name + ".AnsList01", ven.AnsListGuid);
                 var answerLook = Library.CopyAndAdd<BlueprintAnswer>("719394baae0fe7645aa8e6c743556f04", answersList.name + ".Ans01", ven.AnswerShowGuid);
                 var answerExit = Library.CopyAndAdd<BlueprintAnswer>("938dc0b52670b9a4fb3d3ee611819f0f", answersList.name + ".Ans02", ven.AnswerExitGuid);
-                var vendorTable = ScriptableObject.CreateInstance<BlueprintSharedVendorTable>();
+                var vendorTable = SerializedScriptableObject.CreateInstance<BlueprintSharedVendorTable>();
                 if (!(ven.VendorTableGuid == "none"))
                 {
                     vendorTable = Library.CopyAndAdd<BlueprintSharedVendorTable>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);
@@ -470,7 +470,7 @@ namespace BetterVendors.Vendors
                 var answersList = Library.CopyAndAdd<BlueprintAnswersList>("e30c7b55e7c8a6249a1334c4442414de", cueBase.name + ".AnsList01", ven.AnsListGuid);
                 var answerLook = Library.CopyAndAdd<BlueprintAnswer>("719394baae0fe7645aa8e6c743556f04", answersList.name + ".Ans01", ven.AnswerShowGuid);
                 var answerExit = Library.CopyAndAdd<BlueprintAnswer>("938dc0b52670b9a4fb3d3ee611819f0f", answersList.name + ".Ans02", ven.AnswerExitGuid);
-                var vendorTable = ScriptableObject.CreateInstance<BlueprintUnitLoot>();
+                var vendorTable = SerializedScriptableObject.CreateInstance<BlueprintUnitLoot>();
                 if (!(ven.VendorTableGuid == "none"))
                 {
                     vendorTable = Library.CopyAndAdd<BlueprintUnitLoot>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);
