@@ -50,6 +50,7 @@ namespace BetterVendors.Menus
                 {
                     if (results != null && results.Count > 0)
                     {
+
                         /*
                         GUILayout.Label(Local["Menu_Txt_VendorPick"], falseWidth);
                         vendorToolbar = GUILayout.Toolbar(vendorToolbar, VTI.VendorTableIds.Keys.ToArray(), new GUIStyle(GUI.skin.button) { wordWrap = true, fixedHeight = 50f }, new GUILayoutOption[] { GL.MaxWidth(800f) });
