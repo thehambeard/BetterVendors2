@@ -160,6 +160,7 @@ namespace BetterVendors.Utilities
             {
                 guid = Helpers.GuidStorage.getGuid(blueprint.name);
             }
+            Main.Mod.Debug(guid);
             blueprintScriptableObject_set_AssetId(blueprint, guid);
             // Sanity check that we don't stop on our own GUIDs or someone else's.
             BlueprintScriptableObject existing;
@@ -187,7 +188,8 @@ namespace BetterVendors.Utilities
             }
 #endif
 
-            library.BlueprintsByAssetId.Add(guid, blueprint);
+            library.GetAllBlueprints().Add(blueprint);
+            library.BlueprintsByAssetId[guid] = blueprint;
             Helpers.GuidStorage.addEntry(blueprint.name, guid);
         }
 
@@ -305,7 +307,7 @@ namespace BetterVendors.Utilities
 
         public static T CopyAndAdd<T>(this LibraryScriptableObject library, T original, String newName, String newAssetId, String newAssetId2 = null) where T : BlueprintScriptableObject
         {
-            var clone = (T) SerializedScriptableObject.Instantiate(original);
+            var clone = UnityEngine.Object.Instantiate(original);
             clone.name = newName;
             var id = newAssetId2 != null ? Helpers.MergeIds(newAssetId, newAssetId2) : newAssetId;
             AddAsset(library, clone, id);
@@ -313,9 +315,9 @@ namespace BetterVendors.Utilities
         }
 
 
-        public static T CreateCopy<T>(this T original, Action<T> action = null) where T : SerializedScriptableObject, new()
+        public static T CreateCopy<T>(this T original, Action<T> action = null) where T : UnityEngine.Object
         {
-            var clone = (T) SerializedScriptableObject.Instantiate(original);
+            var clone = UnityEngine.Object.Instantiate(original);
             if (action != null)
             {
                 action(clone);
@@ -905,7 +907,6 @@ namespace BetterVendors.Utilities
 
             static public void addEntry(string name, string guid)
             {
-                Main.Mod.Debug(MethodBase.GetCurrentMethod());
                 string original_guid;
                 if (guids_in_use.TryGetValue(name, out original_guid))
                 {
@@ -1049,7 +1050,7 @@ namespace BetterVendors.Utilities
 
             // Note: we can't easily scan all class spell lists, because some spells are
             // only added via special lists, like the ice version of burning hands.
-            foreach (var blueprint in Main.Library.BlueprintsByAssetId.Values)
+            foreach (var blueprint in Main.Library.GetAllBlueprints())
             {
                 var spell = blueprint as BlueprintAbility;
                 if (spell != null)
@@ -1095,9 +1096,9 @@ namespace BetterVendors.Utilities
                 f => f.ComponentsArray.Any(c => (c as AddContextStatBonus)?.Stat == skill));
         }
 
-        public static T Create<T>(Action<T> init = null) where T : SerializedScriptableObject, new()
+        public static T Create<T>(Action<T> init = null) where T : ScriptableObject
         {
-            var result = SerializedScriptableObject.CreateInstance<T>();
+            var result = ScriptableObject.CreateInstance<T>();
             if (init != null) init(result);
             return result;
         }
@@ -1425,7 +1426,7 @@ namespace BetterVendors.Utilities
         }
 
         public static T CreateParamSelection<T>(String name, String displayName, String description, String guid, Sprite icon,
-            FeatureGroup group, params BlueprintComponent[] components) where T : BlueprintParametrizedFeature, new()
+            FeatureGroup group, params BlueprintComponent[] components) where T : BlueprintParametrizedFeature
         {
 
             var feat = Create<T>();
@@ -1873,7 +1874,7 @@ namespace BetterVendors.Utilities
         public static AbilityResourceLogic ReplaceResourceLogic(this BlueprintAbility ability, BlueprintAbilityResource resource)
         {
             var original = ability.GetComponent<AbilityResourceLogic>();
-            var replacement = (AbilityResourceLogic) SerializedScriptableObject.Instantiate(original);
+            var replacement = UnityEngine.Object.Instantiate(original);
             replacement.RequiredResource = resource;
             ability.ReplaceComponent(original, replacement);
             return replacement;
@@ -1883,7 +1884,7 @@ namespace BetterVendors.Utilities
         {
             foreach (var original in obj.GetComponents<ContextRankConfig>())
             {
-                var replacement = (ContextRankConfig) SerializedScriptableObject.Instantiate(original);
+                var replacement = UnityEngine.Object.Instantiate(original);
                 update(replacement);
                 obj.ReplaceComponent(original, replacement);
             }
@@ -1900,7 +1901,7 @@ namespace BetterVendors.Utilities
         }
 
 
-        public static void ReplaceComponent<T>(this BlueprintScriptableObject obj, Action<T> action) where T : BlueprintComponent, new()
+        public static void ReplaceComponent<T>(this BlueprintScriptableObject obj, Action<T> action) where T : BlueprintComponent
         {
             var replacement = obj.GetComponent<T>().CreateCopy();
             action(replacement);
@@ -2460,7 +2461,7 @@ namespace BetterVendors.Utilities
                     {
                         var lootItem = new LootItem();
                         LootItem_setItem(lootItem, newItem);
-                        var newPack = (LootItemsPackFixed) SerializedScriptableObject.Instantiate(pack);
+                        var newPack = UnityEngine.Object.Instantiate(pack);
                         LootItemsPackFixed_setItem(newPack, lootItem);
                         newComponents.Add(newPack);
                         //Log.Append($"Adding metamagic rod {rod.name} to unitloot: {unitLoot.name}");
@@ -3101,14 +3102,15 @@ namespace BetterVendors.Utilities
         
     }
 
-    [HarmonyLib.HarmonyPatch(typeof(GameStarter), "DetectHardwareConfig")]
-    [HarmonyLib.HarmonyPatch(typeof(GameStarter), "DetectHardwareConfig", new Type[0])]
-    static class GameStarter_DetectHardwareConfig_Patch
+    [HarmonyLib.HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary")]
+    [HarmonyLib.HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary", new Type[0])]
+    static class LibraryScriptableObject_LoadDictionary_Patch
     {
-        static void Postfix()
+        static void Postfix(LibraryScriptableObject __instance)
         {
+            var self = __instance;
             if (Main.Library != null) return;
-            Main.Library = ResourcesLibrary.LibraryObject;
+            Main.Library = self;
             Helpers.Reload();
         }
     }

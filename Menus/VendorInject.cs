@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityModManagerNet;
 using static BetterVendors.Main;
 using GL = UnityEngine.GUILayout;
-using VTI = BetterVendors.Vendors.VendorInject;
 
 
 namespace BetterVendors.Menus
@@ -23,7 +22,7 @@ namespace BetterVendors.Menus
         private static GUILayoutOption[] falseWidth = new GUILayoutOption[] { GUILayout.ExpandWidth(false) };
         Dictionary<string, string> results = new Dictionary<string, string>();
         private static int vendorToolbar = 0;
-        
+        private string[] vendors = Vendors.VendorInject.VendorTableIds.Keys.ToArray();
         private string itemAdded = "";
 
         public void OnGUI(UnityModManager.ModEntry modEntry)
@@ -50,10 +49,10 @@ namespace BetterVendors.Menus
                 {
                     if (results != null && results.Count > 0)
                     {
-                        /*
+
                         GUILayout.Label(Local["Menu_Txt_VendorPick"], falseWidth);
-                        vendorToolbar = GUILayout.Toolbar(vendorToolbar, VTI.VendorTableIds.Keys.ToArray(), new GUIStyle(GUI.skin.button) { wordWrap = true, fixedHeight = 50f }, new GUILayoutOption[] { GL.MaxWidth(800f) });
-                        if (GUILayout.Button(string.Format(Local["Menu_Btn_AddAll"], vendorToolbar), falseWidth))
+                        vendorToolbar = GUILayout.Toolbar(vendorToolbar, vendors, new GUIStyle(GUI.skin.button) { wordWrap = true, fixedHeight = 50f }, new GUILayoutOption[] { GL.MaxWidth(800f) });
+                        if (GUILayout.Button(string.Format(Local["Menu_Btn_AddAll"], vendors[vendorToolbar]), falseWidth))
                         {
                             results = Vendors.VendorInject.SearchItems(searchString);
                             foreach (KeyValuePair<string, string> item in results)
@@ -77,7 +76,6 @@ namespace BetterVendors.Menus
                                     GUILayout.Label(Local["Menu_Txt_ItemAdded"], falseWidth);
                             }
                         }
-                        */
                     }
                     else
                         GUILayout.Label(Local["Menu_Lbl_Noresult"]);

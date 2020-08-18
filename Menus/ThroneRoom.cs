@@ -29,25 +29,19 @@ namespace BetterVendors.Menus
 #if (DEBUG)
             OnGUIDebugFunctions();
 #endif
-            
             if (!Mod.Enabled) return;
             if (!MenuHelpers.NotInGameMessage()) return;
             OnGUIMerchant();
             OnGUIThroneRoom();
-            
         }
 
         private void OnGUIDebugFunctions()
         {
             using (new GUISubScope("Debug", "box"))
             {
-                string combined = "";
-                if (GL.Button("Player", falseWidth))
-                {
-                    var position = Game.Instance.Player.MainCharacter.Value.Position;
-                    var rotation = Game.Instance.Player.MainCharacter.Value.OrientationDirection;
-                    combined = $"{position.x}f, {position.y}f, {position.z}f {rotation.x}f, {rotation.y}f, {rotation.z}f";
-                }
+                var position = Game.Instance.Player.MainCharacter.Value.Position;
+                var rotation = Game.Instance.Player.MainCharacter.Value.OrientationDirection;
+                var combined = $"{position.x}f, {position.y}f, {position.z}f {rotation.x}f, {rotation.y}f, {rotation.z}f";
                 GL.TextField(combined, falseWidth);
                 if (GL.Button("TP Throne Room", falseWidth))
                 {
@@ -85,10 +79,6 @@ namespace BetterVendors.Menus
                 if (GL.Button("Respawn Guild", falseWidth))
                 {
                     MechantGuild.LibraryLoad(true);
-                }
-                if (GL.Button("Library Information", falseWidth))
-                {
-                    Helpers.GuidStorage.dump($@"{SettingsWrapper.ModPath}blueprints.txt");
                 }
             }
         }
