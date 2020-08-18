@@ -1,5 +1,5 @@
 # BetterVendors
-A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton<br>
+A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton
 LOTS of broken stuff due to the beta
 
 ## Version 2.0.0
