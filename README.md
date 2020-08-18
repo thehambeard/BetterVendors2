@@ -1,7 +1,7 @@
 # BetterVendors
 A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton
 
-## Version 2.0.3
+## Version 2.0.1
 * Moved Entire code base to Harmony 2.0
 * Moved KingmakerModMaker to Harmony 2.0
 * Moved Cotw/EA helpers to Harmony 2.0
