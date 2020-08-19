@@ -125,9 +125,6 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="blueprints.txt" />
-    <Content Include="Settings.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="info.json">

@@ -17,13 +17,13 @@ Issili, and a vendor that has most of the items that are unobtainable.
 * Removed enabling/disabling individual throne room vendors, unnecessary feature
 * Moved arcane vendor progression from arsinoe to zarci
 * No longer need to hit the search button for vendor inject, list will update as you type after the 3rd character is typed
-* Vendor inject will now confirm that you added the item to the vendor
+* Vendor inject will now confirm that you added the item to the vendor\
+* New vendor POI flags will always be shown on the map.
 
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
 * Revist vendor progression code for improvements, bugs, etc. 
-* Compile/Debug against 2.1 released 8/18/2020
+* Debug against 2.1 released 8/18/2020
 
 ## Notes:
-* Before upgrading to 2.0 of the mod despawn the throne room vendors
 * Before uninstalling 2.0 of the mod despawn the vendors 
