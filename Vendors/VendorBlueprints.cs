@@ -7,6 +7,7 @@ using Kingmaker.Localization;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Interaction;
 using Kingmaker.Utility;
+using Kingmaker.Blueprints.Facts;
 using ModMaker;
 using ModMaker.Utility;
 using System;
@@ -396,70 +397,13 @@ namespace BetterVendors.Vendors
             foreach (KeyValuePair<string, Vendor> kvp in NewVendors)
             {
                 if (kvp.Value.Shared)
-                    CreateSharedVendor(kvp.Value);
+                    CreateVendor<BlueprintSharedVendorTable>(kvp.Value);
                 else
-                    CreateVendor(kvp.Value);
+                    CreateVendor<BlueprintUnitLoot>(kvp.Value);
             }
         }
 
-        public static void CreateSharedVendor(Vendor ven)
-        {
-            Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            Main.Mod.Debug(ven.Name);
-            Main.Mod.Debug(ven.UnitGuid);
-            try
-            {
-                var unit = Library.CopyAndAdd<BlueprintUnit>("e0449cfcf8ad6084ebfc161fb73e9a27", ven.Name, ven.UnitGuid);
-                var dialog = Library.CopyAndAdd<BlueprintDialog>("cd572bf45986d134591b8ff48e1f191f", ven.Name + ".Dialog01", ven.DialogGuid);
-                var cueBase = Library.CopyAndAdd<BlueprintCue>("0f6773f2ad1af654291e4a20cfa417ad", dialog.name + ".Cue01", ven.CueGuid);
-                var answersList = Library.CopyAndAdd<BlueprintAnswersList>("e30c7b55e7c8a6249a1334c4442414de", cueBase.name + ".AnsList01", ven.AnsListGuid);
-                var answerLook = Library.CopyAndAdd<BlueprintAnswer>("719394baae0fe7645aa8e6c743556f04", answersList.name + ".Ans01", ven.AnswerShowGuid);
-                var answerExit = Library.CopyAndAdd<BlueprintAnswer>("938dc0b52670b9a4fb3d3ee611819f0f", answersList.name + ".Ans02", ven.AnswerExitGuid);
-                var vendorTable = ScriptableObject.CreateInstance<BlueprintSharedVendorTable>();
-                if (!(ven.VendorTableGuid == "none"))
-                {
-                    vendorTable = Library.CopyAndAdd<BlueprintSharedVendorTable>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);
-                }
-                else
-                {
-                    vendorTable = Library.Get<BlueprintSharedVendorTable>(ven.VendorTableOrig);
-                }
-
-                dialog.FirstCue.Cues[0] = cueBase;
-                cueBase.Text = Helpers.CreateString(cueBase.name + ".Text", ven.Description);
-                cueBase.ParentAsset = dialog;
-                answerLook.ParentAsset = answersList;
-                answerExit.ParentAsset = answersList;
-                answersList.Answers.Clear();
-                answersList.Answers.Add(answerLook);
-                answersList.Answers.Add(answerExit);
-                cueBase.Answers = answersList.Answers;
-                answersList.ParentAsset = cueBase;
-                DialogOnClick newDialog = unit.GetComponent<DialogOnClick>().CreateCopy(delegate (DialogOnClick dc)
-                {
-                    dc.Dialog = dialog;
-                    dc.name = unit.name + ".OnClick";
-                });
-                AddVendorItems newVendorTable = unit.GetComponent<AddVendorItems>().CreateCopy(delegate (AddVendorItems avi)
-                {
-                    avi.name = unit.name + "VendorTable";
-                    avi.m_Loot = vendorTable;
-                });
-                unit.ReplaceComponent<AddVendorItems>(newVendorTable);
-                unit.ReplaceComponent<DialogOnClick>(newDialog);
-                unit.Prefab.AssetId = ven.PrefabId;
-                Main.Mod.Debug(ven.DisplayName);
-                Main.Mod.Debug(ven.Name);
-                unit.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>();
-                unit.LocalizedName.name = ven.Name + ".Local";
-                unit.LocalizedName.String = Helpers.CreateString(ven.Name + ".Local.Str", ven.DisplayName);
-            }
-            catch (Exception ex)
-            {
-                Main.Mod.Debug(ex.Message);
-            }
-        }
-        public static void CreateVendor(Vendor ven)
+        public static void CreateVendor<T>(Vendor ven) where T : BlueprintUnitLoot
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             try
@@ -470,14 +414,15 @@ namespace BetterVendors.Vendors
                 var answersList = Library.CopyAndAdd<BlueprintAnswersList>("e30c7b55e7c8a6249a1334c4442414de", cueBase.name + ".AnsList01", ven.AnsListGuid);
                 var answerLook = Library.CopyAndAdd<BlueprintAnswer>("719394baae0fe7645aa8e6c743556f04", answersList.name + ".Ans01", ven.AnswerShowGuid);
                 var answerExit = Library.CopyAndAdd<BlueprintAnswer>("938dc0b52670b9a4fb3d3ee611819f0f", answersList.name + ".Ans02", ven.AnswerExitGuid);
-                var vendorTable = ScriptableObject.CreateInstance<BlueprintUnitLoot>();
+                T vendorTable = ScriptableObject.CreateInstance<T>();
+                unit.AddFacts = new BlueprintUnitFact[]{ Library.Get<BlueprintUnitFact>("5ee9b48ff62737b4c81e7dfda4cba578") }; 
                 if (!(ven.VendorTableGuid == "none"))
                 {
-                    vendorTable = Library.CopyAndAdd<BlueprintUnitLoot>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);
+                    vendorTable = Library.CopyAndAdd<T>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);
                 }
                 else
                 {
-                    vendorTable = Library.Get<BlueprintUnitLoot>(ven.VendorTableOrig);
+                    vendorTable = Library.Get<T>(ven.VendorTableOrig);
                 }
 
                 dialog.FirstCue.Cues[0] = cueBase;
@@ -485,6 +430,8 @@ namespace BetterVendors.Vendors
                 cueBase.ParentAsset = dialog;
                 answerLook.ParentAsset = answersList;
                 answerExit.ParentAsset = answersList;
+                answerLook.Text = Helpers.CreateString(answerLook.name + ".Text", "Let's see what you are selling.");
+                answerExit.Text = Helpers.CreateString(answerExit.name + ".Text", "I'll take my leave.");
                 answersList.Answers.Clear();
                 answersList.Answers.Add(answerLook);
                 answersList.Answers.Add(answerExit);

@@ -21,6 +21,7 @@ namespace BetterVendors.Menus
         public string Name => Local["Menu_Tab_TRV"];
 
         public int Priority => 100;
+        private string tpEP = "";
         
         private static GUILayoutOption[] falseWidth = new GUILayoutOption[] { GUILayout.ExpandWidth(false) };
 
@@ -51,6 +52,13 @@ namespace BetterVendors.Menus
                 {
                     GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>("3a9748aba32e1694f80a6cae9b7b3f99"), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
                 }
+                tpEP = GL.TextField(tpEP);
+                if (GL.Button("TP EP", falseWidth))
+                {
+                    if(tpEP != "")
+                        GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>(tpEP), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
+                }
+
                 if (GL.Button("Reload Library", falseWidth))
                 {
                     Library = ResourcesLibrary.LibraryObject;
