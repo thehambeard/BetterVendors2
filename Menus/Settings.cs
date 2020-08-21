@@ -32,11 +32,6 @@ namespace BetterVendors.Menus
         public void OnGUI(UnityModManager.ModEntry modEntry)
         {
             if (!Mod.Enabled) return;
-            if (!Game.Instance.Player.ControllableCharacters.Any())
-            {
-                GL.Label(Local["Menu_Lbl_NotInGame"]);
-                return;
-            }
             if (toggleStyle == null)
                 toggleStyle = new GUIStyle(GUI.skin.toggle) { wordWrap = true };
             using (new GL.VerticalScope("box"))

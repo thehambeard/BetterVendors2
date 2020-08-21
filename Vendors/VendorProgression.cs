@@ -21,6 +21,8 @@ namespace BetterVendors.Vendors
 {
     public class ProgressionLogic
     {
+        private static LibraryScriptableObject library => Main.Library;
+
         public static readonly Dictionary<string, string> VendorTableIds = new Dictionary<string, string>()
         {
             {"Arsinoe","afa2c7f292b8e1c4d9c835f0e8047dd3"},
@@ -200,7 +202,7 @@ namespace BetterVendors.Vendors
             // Adds provided items to the stock of a SharedVendorTable with the provided GUID.
             // The items are added to existing in-game stock, not to the blueprint.
 
-            var vendorTable = ResourcesLibrary.TryGetBlueprint<BlueprintSharedVendorTable>(vendorTableId);
+            var vendorTable = library.Get<BlueprintSharedVendorTable>(vendorTableId);
             var components = ConvertItemsToLoot(items, amountToAdd);
             var adder = ScriptableObject
                 .CreateInstance<Kingmaker.Designers.EventConditionActionSystem.Actions.AddItemsToVendor>();
@@ -220,7 +222,7 @@ namespace BetterVendors.Vendors
                 var lootItem = new LootItem();
                 Helpers.SetField(lootItem, "m_Item", item);
                 Helpers.SetField(lootItem, "m_Type", LootItemType.Item);
-                Helpers.SetField(lootComponent, "m_Item", lootComponent);
+                Helpers.SetField(lootComponent, "m_Item", lootItem);
                 Helpers.SetField(lootComponent, "m_Count", amountToAdd);
                 components[itemsAdded] = lootComponent;
                 itemsAdded++;
@@ -367,13 +369,13 @@ namespace BetterVendors.Vendors
             // Gets all usables and filters them to return arcane or divine scrolls/wands of a particular caster level.
 
             var usables = ResourcesLibrary.GetBlueprints<BlueprintItemEquipmentUsable>();
-            var wizardSpellList = ResourcesLibrary.TryGetBlueprint<BlueprintSpellList>(SpellListIds["Wizard"]);
-            var bardSpellList = ResourcesLibrary.TryGetBlueprint<BlueprintSpellList>(SpellListIds["Bard"]);
-            var clericSpellList = ResourcesLibrary.TryGetBlueprint<BlueprintSpellList>(SpellListIds["Cleric"]);
-            var paladinSpellList = ResourcesLibrary.TryGetBlueprint<BlueprintSpellList>(SpellListIds["Paladin"]);
-            var inquisitorSpellList = ResourcesLibrary.TryGetBlueprint<BlueprintSpellList>(SpellListIds["Inquisitor"]);
-            var rangerSpellList = ResourcesLibrary.TryGetBlueprint<BlueprintSpellList>(SpellListIds["Ranger"]);
-            var druidSpellList = ResourcesLibrary.TryGetBlueprint<BlueprintSpellList>(SpellListIds["Druid"]);
+            var wizardSpellList = library.Get<BlueprintSpellList>(SpellListIds["Wizard"]);
+            var bardSpellList = library.Get<BlueprintSpellList>(SpellListIds["Bard"]);
+            var clericSpellList = library.Get<BlueprintSpellList>(SpellListIds["Cleric"]);
+            var paladinSpellList = library.Get<BlueprintSpellList>(SpellListIds["Paladin"]);
+            var inquisitorSpellList = library.Get<BlueprintSpellList>(SpellListIds["Inquisitor"]);
+            var rangerSpellList = library.Get<BlueprintSpellList>(SpellListIds["Ranger"]);
+            var druidSpellList = library.Get<BlueprintSpellList>(SpellListIds["Druid"]);
 
             usables = usables.Where(usable => usable.SellPrice > 0
                                               && usable.RequireUMDIfCasterHasNoSpellInSpellList == true);
@@ -668,6 +670,7 @@ namespace BetterVendors.Vendors
             {
                 return;
             }
+            
             var stockUpToDate = Game.Instance.Player.MainCharacter.Value.FreeformData["stockUpToDate"];
             int arcaneRank = KingdomState.Instance.Stats.Arcane.Rank;
             int divineRank = KingdomState.Instance.Stats.Divine.Rank;
@@ -675,38 +678,46 @@ namespace BetterVendors.Vendors
             int stabilityRank = KingdomState.Instance.Stats.Stability.Rank;
             Main.Mod.Debug(string.Format("Arcane: {0} Divine:{1} Military: {2} Stability {3}", arcaneRank, divineRank, militaryRank, stabilityRank));
             Main.Mod.Debug(stockUpToDate);
-            if (stockUpToDate == 0)
+            try
             {
-                for (var i = 0; i < arcaneRank; i++)
+                if (stockUpToDate == 0)
                 {
-                    AddArcaneStock(i);
-                }
+                    for (var i = 0; i < arcaneRank; i++)
+                    {
+                        AddArcaneStock(i);
+                    }
 
-                for (var i = 0; i < divineRank; i++)
-                {
-                    AddDivineStock(i);
+                    for (var i = 0; i < divineRank; i++)
+                    {
+                        AddDivineStock(i);
+                    }
+                    for (var i = 0; i < militaryRank; i++)
+                    {
+                        AddMilitaryStock(i);
+                    }
+                    for (var i = 0; i < stabilityRank; i++)
+                    {
+                        AddStabilityStock(i);
+                    }
+                    Game.Instance.Player.MainCharacter.Value.FreeformData["stockUpToDate"] = 1;
                 }
-                for (var i = 0; i < militaryRank; i++)
-                {
-                    AddMilitaryStock(i);
-                }
-                for (var i = 0; i < stabilityRank; i++)
-                {
-                    AddStabilityStock(i);
-                }
-                Game.Instance.Player.MainCharacter.Value.FreeformData["stockUpToDate"] = 1;
+                AddArcaneStock(arcaneRank);
+                AddDivineStock(divineRank);
+                AddMilitaryStock(militaryRank);
+                AddStabilityStock(stabilityRank);
             }
-            AddArcaneStock(arcaneRank);
-            AddDivineStock(divineRank);
-            AddMilitaryStock(militaryRank);
-            AddStabilityStock(stabilityRank);
+            catch (Exception ex)
+            {
+                Main.Mod.Debug(ex.Message + ex.StackTrace);
+            }
         }
 
         [HarmonyLib.HarmonyPatch(typeof(Player), "PostLoad")]
-        static class GameLoadGamePatch
+        public static class GameLoadGamePatch
         {
             static void Postfix()
             {
+                
                 if (Game.Instance.Player.MainCharacter.Value.FreeformData["stockUpToDate"] == 0)
                 {
                     AddStock();

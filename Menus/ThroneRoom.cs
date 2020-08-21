@@ -65,6 +65,10 @@ namespace BetterVendors.Menus
                     Helpers.Load();
                     Helpers.Reload();
                 }
+                if(GL.Button("Add Stock", falseWidth))
+                {
+                    Vendors.ProgressionLogic.AddStock();
+                }
                 if (GL.Button("Spawn Throne Vendors", falseWidth))
                 {
                     Vendors.ThroneRoom.HandleAreaLoad();
