@@ -22,8 +22,6 @@ Issili, and a vendor that has most of the items that are unobtainable.
 
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
-* Revist vendor progression code for improvements, bugs, etc. 
-* Debug against 2.1 released 8/18/2020
 
 ## Notes:
-* Before uninstalling 2.0 of the mod despawn the vendors 
+* Before uninstalling 2.0.1 of the mod despawn the vendors 
