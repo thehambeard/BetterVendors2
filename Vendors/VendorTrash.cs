@@ -131,6 +131,7 @@ namespace BetterVendors.Vendors
         }
     }
 
+    
     [HarmonyLib.HarmonyPatch(typeof(VendorMassSale))]
     [HarmonyLib.HarmonyPatch("PushSale")]
     internal static class VenderMassSale_PushSale_Patch
@@ -175,7 +176,4 @@ namespace BetterVendors.Vendors
             HighlightItemSlotHelper.HighlightSlots(__instance);
         }
     }
-
-
-
 }

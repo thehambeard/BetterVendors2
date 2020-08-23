@@ -21,7 +21,8 @@ namespace BetterVendors
 
         static bool Load(UnityModManager.ModEntry modEntry)
         {
-            HarmonyLib.Harmony.DEBUG = true;
+
+            HarmonyLib.Harmony.DEBUG = false;
             Local = new LocalizationManager<DefaultLanguage>();
             Mod = new ModManager<Core, Settings>();
             Menu = new MenuManager();

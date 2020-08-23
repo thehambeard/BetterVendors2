@@ -638,6 +638,7 @@ namespace BetterVendors.Utilities
         //internal static readonly FastSetter<BlueprintAbilityResource, object> setMaxAmount = Helpers.CreateFieldSetter<BlueprintAbilityResource, object>("m_MaxAmount");
         //internal static readonly FastGetter<BlueprintAbilityResource, object> getMaxAmount = Helpers.CreateFieldGetter<BlueprintAbilityResource, object>("m_MaxAmount");
         //static readonly Type blueprintAbilityResource_Amount = HarmonyLib.AccessTools.Inner(typeof(BlueprintAbilityResource), "Amount");
+        
         internal static FieldInfo maxAmountInfo = HarmonyLib.AccessTools.Field(typeof(BlueprintAbilityResource), "m_MaxAmount");
         private static object getMaxAmount(BlueprintAbilityResource resource)
         {
@@ -647,6 +648,17 @@ namespace BetterVendors.Utilities
         {
             maxAmountInfo.SetValue(resource, value);
         }
+        
+
+#if (DEBUG)
+        public static void TestSetGet(this BlueprintAbilityResource resource)
+        {
+            var amount = getMaxAmount(resource);
+            Helpers.SetField(amount, "PerStepIncrease", 23);
+            var step = Helpers.GetField(amount, "PerStepIncrease");
+            Main.Mod.Log(step);
+        }
+#endif
         public static void SetIncreasedByLevel(this BlueprintAbilityResource resource, int baseValue, int levelIncrease, BlueprintCharacterClass[] classes, BlueprintArchetype[] archetypes = null)
         {
             var amount = getMaxAmount(resource);
@@ -3101,7 +3113,7 @@ namespace BetterVendors.Utilities
 
         
     }
-
+    
     [HarmonyLib.HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary")]
     [HarmonyLib.HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary", new Type[0])]
     static class LibraryScriptableObject_LoadDictionary_Patch
@@ -3114,7 +3126,10 @@ namespace BetterVendors.Utilities
             Helpers.Reload();
         }
     }
+    
+
     public delegate void FastSetter<T, S>(T source, S value);
     public delegate S FastGetter<T, S>(T source);
     public delegate object FastInvoke(object target, params object[] paramters);
+    
 }

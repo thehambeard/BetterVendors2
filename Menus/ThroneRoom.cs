@@ -35,7 +35,7 @@ namespace BetterVendors.Menus
             OnGUIMerchant();
             OnGUIThroneRoom();
         }
-
+#if (DEBUG)
         private void OnGUIDebugFunctions()
         {
             using (new GUISubScope("Debug", "box"))
@@ -92,8 +92,14 @@ namespace BetterVendors.Menus
                 {
                     MechantGuild.LibraryLoad(true);
                 }
+                if (GL.Button("Test getter/setter", falseWidth))
+                {
+                    BlueprintAbilityResource bar = Library.Get<BlueprintAbilityResource>("17b6158d363e4844fa073483eb2655f8");
+                    bar.TestSetGet();
+                }
             }
         }
+#endif
 
         private void OnGUIMerchant()
         {

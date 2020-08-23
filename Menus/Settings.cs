@@ -32,7 +32,7 @@ namespace BetterVendors.Menus
         public void OnGUI(UnityModManager.ModEntry modEntry)
         {
             if (!Mod.Enabled) return;
-            if (toggleStyle == null)
+            if (toggleStyle == null) 
                 toggleStyle = new GUIStyle(GUI.skin.toggle) { wordWrap = true };
             using (new GL.VerticalScope("box"))
             {

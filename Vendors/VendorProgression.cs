@@ -712,6 +712,7 @@ namespace BetterVendors.Vendors
             }
         }
 
+        
         [HarmonyLib.HarmonyPatch(typeof(Player), "PostLoad")]
         public static class GameLoadGamePatch
         {
@@ -740,5 +741,6 @@ namespace BetterVendors.Vendors
 
             }
         }
+        
     }
 }
