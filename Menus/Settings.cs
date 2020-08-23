@@ -25,7 +25,7 @@ namespace BetterVendors.Menus
         string fileName = Local.FileName ?? "Default.json";
         string exMessage, inMessage;
         string[] files;
-        LibraryScriptableObject library = Main.Library;
+        LibraryScriptableObject library => Main.Library;
 
         GUIStyle toggleStyle;
 
@@ -60,8 +60,10 @@ namespace BetterVendors.Menus
                         using (new GUISubScope())
                         {
                             string remove = "";
+                                                        
                             foreach (string trash in VendorTrashItems)
                             {
+                                
                                 using (new GL.VerticalScope("box", GL.Width(420f)))
                                 {
                                     using (new GL.HorizontalScope())
@@ -71,9 +73,11 @@ namespace BetterVendors.Menus
                                             remove = trash;
                                     }
                                 }
+                                
                             }
                             if (remove != "")
                                 VendorTrashItems.Remove(remove);
+                            
                         }
                     }
                 }

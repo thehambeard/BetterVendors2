@@ -20,6 +20,7 @@ Issili, and a vendor that has most of the items that are unobtainable.
 * Vendor inject will now confirm that you added the item to the vendor\
 * New vendor POI flags will always be shown on the map.
 * Fixed issue with long load times.
+* Fixed show trash items toggle button throwing an expection.
 
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
