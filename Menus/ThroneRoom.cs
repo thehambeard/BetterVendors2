@@ -55,6 +55,10 @@ namespace BetterVendors.Menus
                 {
                     GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>("3a9748aba32e1694f80a6cae9b7b3f99"), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
                 }
+                if (GL.Button("TP Guild", falseWidth))
+                {
+                    GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>("26b7b66f082f46dd8e9223be3148b5ad"), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
+                }
                 tpEP = GL.TextField(tpEP);
                 if (GL.Button("TP EP", falseWidth))
                 {

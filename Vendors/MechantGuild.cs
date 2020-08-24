@@ -59,14 +59,12 @@ namespace BetterVendors.Vendors
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
 
-            Game.Instance.Player.MainCharacter.Value.Position = new Vector3(16.5f, 0.1f, -0.5f);
-
             if (Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] == 0 || force)
             {
                 foreach (UnitEntityData e in Kingmaker.Game.Instance.State.Units)
                 {
-                    if (!e.IsMainCharacter)
-                        e.Destroy();
+                    if (!e.IsMainCharacter && !(e.Faction.AssetGuid.Equals("72f240260881111468db610b6c37c099")))
+                        e.Destroy();  
                 }
                 foreach (MapObjectEntityData m in Game.Instance.State.MapObjects.All)
                     m.Destroy();
@@ -77,11 +75,18 @@ namespace BetterVendors.Vendors
                 Game.Instance.CurrentlyLoadedArea.AreaName = Helpers.CreateString("MerchantGuild", "Merchant Guild");
                 foreach (KeyValuePair<string, Vendor> kvp in VendorBlueprints.NewVendors.Where(n => n.Value.AreaId == Vendor.Area.MerchantGuild))
                 {
-                    
                     kvp.Value.Spawn();
                 }
                 Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] = 1;
             }
+            
+            foreach (UnitEntityData e in Game.Instance.State.Units.Where(c => c.Faction.AssetGuid.Equals("72f240260881111468db610b6c37c099")))
+            {
+                e.Position = new Vector3(16.85f, 0.07f, 6.74f);
+                e.Orientation = 90f;
+            }
+            Game.Instance.Player.MainCharacter.Value.Position = new Vector3(16.43f, 0.12f, -0.55f);
+            Game.Instance.Player.MainCharacter.Value.Orientation = 90f;
         }
 
         public static bool TP()
@@ -91,11 +96,7 @@ namespace BetterVendors.Vendors
             BlueprintAreaEnterPoint ep = new BlueprintAreaEnterPoint();
             bool result = false;
 
-            Main.Mod.Debug(InThroneRoom);
-            Main.Mod.Debug(IsStone);
-            Main.Mod.Debug(InGuild);
-
-            if (InThroneRoom)
+            if (InThroneRoom) //TODO: change getter to check if in throne room, do not set it...
             {
                 IsStone = Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092");
                 ep = ResourcesLibrary.TryGetBlueprint<BlueprintAreaEnterPoint>(merchGuildEpId);

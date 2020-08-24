@@ -1,7 +1,7 @@
 # BetterVendors
 A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton
 
-## Version 2.0.2
+## Version 2.0.4
 * Moved Entire code base to Harmony 2.0
 * Moved KingmakerModMaker to Harmony 2.0
 * Moved Cotw/EA helpers to Harmony 2.0
@@ -21,6 +21,7 @@ Issili, and a vendor that has most of the items that are unobtainable.
 * New vendor POI flags will always be shown on the map.
 * Fixed issue with long load times.
 * Fixed show trash items toggle button throwing an expection.
+* Fixed issue with companions despawning
 
 ## TODO:
 * Add support for keeping of a particular item even though it's on the trash list
