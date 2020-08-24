@@ -3,7 +3,7 @@
   "DisplayName": "Better Vendors",
   "Author": "hambeard",
   "Version": "2.0.3",
-  "ManagerVersion": "0.22.8",
+  "ManagerVersion": "0.22.9",
   "Repository": "https://raw.githubusercontent.com/thehambeard/UMMupdates/master/Repository.json",
   "EntryMethod": "BetterVendors.Main.Load"
 }

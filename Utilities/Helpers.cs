@@ -649,6 +649,7 @@ namespace BetterVendors.Utilities
             maxAmountInfo.SetValue(resource, value);
         }
         
+        
 
 #if (DEBUG)
         public static void TestSetGet(this BlueprintAbilityResource resource)

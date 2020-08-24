@@ -40,10 +40,13 @@ namespace BetterVendors.Menus
         {
             using (new GUISubScope("Debug", "box"))
             {
-                var position = Game.Instance.Player.MainCharacter.Value.Position;
-                var rotation = Game.Instance.Player.MainCharacter.Value.OrientationDirection;
-                var combined = $"{position.x}f, {position.y}f, {position.z}f {rotation.x}f, {rotation.y}f, {rotation.z}f";
-                GL.TextField(combined, falseWidth);
+                if (Game.Instance.Player.MainCharacter != null)
+                {
+                    var position = Game.Instance.Player.MainCharacter.Value.Position;
+                    var rotation = Game.Instance.Player.MainCharacter.Value.OrientationDirection;
+                    var combined = $"{position.x}f, {position.y}f, {position.z}f {rotation.x}f, {rotation.y}f, {rotation.z}f";
+                    GL.TextField(combined, falseWidth);
+                }
                 if (GL.Button("TP Throne Room", falseWidth))
                 {
                     GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>("21fb2ff53d1e2fb4c9b06f067ab89435"), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
