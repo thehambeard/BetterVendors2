@@ -1,11 +1,10 @@
-﻿using Kingmaker;
-using Kingmaker.EntitySystem.Entities;
+﻿using BetterVendors.Utilities;
+using Kingmaker;
 using Kingmaker.PubSubSystem;
 using ModMaker;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using BetterVendors.Utilities;
 using UnityEngine;
 
 namespace BetterVendors.Vendors

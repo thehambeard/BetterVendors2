@@ -25,10 +25,7 @@ namespace BetterVendors.Vendors
         public void HandleModEnable()
         {
             Mod.Debug(MethodBase.GetCurrentMethod());
-            if (TrashColor.Equals(Color.clear))
-                TrashColor = new Color(1f, 0f, 0f, .2f);
-            if (ScrollColor.Equals(Color.clear))
-                ScrollColor = new Color(0f, 1f, 0f, 1f);
+
             EventBus.Subscribe(this);
         }
 
@@ -36,7 +33,7 @@ namespace BetterVendors.Vendors
         {
             Mod.Debug(MethodBase.GetCurrentMethod());
 
-            bool control = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) ;
+            bool control = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
 
             Mod.Debug(control);
             if (control && ToggleVendorTrash && Mod.Enabled)
@@ -131,7 +128,7 @@ namespace BetterVendors.Vendors
         }
     }
 
-    
+
     [HarmonyLib.HarmonyPatch(typeof(VendorMassSale))]
     [HarmonyLib.HarmonyPatch("PushSale")]
     internal static class VenderMassSale_PushSale_Patch

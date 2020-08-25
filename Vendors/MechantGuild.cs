@@ -8,7 +8,6 @@ using Kingmaker.EntitySystem.Entities;
 using Kingmaker.PubSubSystem;
 using Kingmaker.View.Roaming;
 using ModMaker;
-using QuickGraph;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -38,7 +37,7 @@ namespace BetterVendors.Vendors
 
         public void OnAreaScenesLoaded()
         {
-            
+
         }
 
         public static void CreateMerchantGuild()
@@ -64,7 +63,7 @@ namespace BetterVendors.Vendors
                 foreach (UnitEntityData e in Kingmaker.Game.Instance.State.Units)
                 {
                     if (!e.IsMainCharacter && !(e.Faction.AssetGuid.Equals("72f240260881111468db610b6c37c099")))
-                        e.Destroy();  
+                        e.Destroy();
                 }
                 foreach (MapObjectEntityData m in Game.Instance.State.MapObjects.All)
                     m.Destroy();
@@ -79,7 +78,7 @@ namespace BetterVendors.Vendors
                 }
                 Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] = 1;
             }
-            
+
             foreach (UnitEntityData e in Game.Instance.State.Units.Where(c => c.Faction.AssetGuid.Equals("72f240260881111468db610b6c37c099")))
             {
                 e.Position = new Vector3(16.85f, 0.07f, 6.74f);

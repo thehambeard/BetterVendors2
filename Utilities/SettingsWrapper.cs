@@ -1,7 +1,7 @@
-﻿using static BetterVendors.Main;
+﻿using ModMaker.Utility;
 using System.Collections.Generic;
 using UnityEngine;
-using ModMaker.Utility;
+using static BetterVendors.Main;
 
 namespace BetterVendors.Utilities
 {

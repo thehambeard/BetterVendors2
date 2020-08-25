@@ -1,5 +1,4 @@
-﻿using BetterVendors.Utilities;
-using Kingmaker;
+﻿using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Entities;
 using System.Reflection;
@@ -70,7 +69,7 @@ namespace BetterVendors.Vendors
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             Main.Mod.Debug(this.UnitGuid);
             Main.Mod.Debug(this.EntityData);
-            if(this.EntityData == null) this.EntityData = GetDataById(this.UnitGuid);
+            if (this.EntityData == null) this.EntityData = GetDataById(this.UnitGuid);
             if (this.EntityData != null)
             {
                 this.EntityData.Destroy();

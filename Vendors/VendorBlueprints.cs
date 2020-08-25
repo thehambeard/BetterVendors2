@@ -1,5 +1,6 @@
 ﻿using BetterVendors.Utilities;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.Items;
 using Kingmaker.Blueprints.Loot;
 using Kingmaker.DialogSystem.Blueprints;
@@ -7,7 +8,6 @@ using Kingmaker.Localization;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Interaction;
 using Kingmaker.Utility;
-using Kingmaker.Blueprints.Facts;
 using ModMaker;
 using ModMaker.Utility;
 using System;
@@ -18,10 +18,10 @@ using static BetterVendors.Utilities.SettingsWrapper;
 
 namespace BetterVendors.Vendors
 {
-    
+
     public class VendorBlueprints : IModEventHandler
     {
-        
+
         public static Dictionary<string, string> CloneGuids = new Dictionary<string, string>
         {
             {"arsinoe", "ae8de86d673a43aaa3c96b62978ac75b" },
@@ -415,7 +415,7 @@ namespace BetterVendors.Vendors
                 var answerLook = Library.CopyAndAdd<BlueprintAnswer>("719394baae0fe7645aa8e6c743556f04", answersList.name + ".Ans01", ven.AnswerShowGuid);
                 var answerExit = Library.CopyAndAdd<BlueprintAnswer>("938dc0b52670b9a4fb3d3ee611819f0f", answersList.name + ".Ans02", ven.AnswerExitGuid);
                 T vendorTable = ScriptableObject.CreateInstance<T>();
-                unit.AddFacts = new BlueprintUnitFact[]{ Library.Get<BlueprintUnitFact>("5ee9b48ff62737b4c81e7dfda4cba578") }; 
+                unit.AddFacts = new BlueprintUnitFact[] { Library.Get<BlueprintUnitFact>("5ee9b48ff62737b4c81e7dfda4cba578") };
                 if (!(ven.VendorTableGuid == "none"))
                 {
                     vendorTable = Library.CopyAndAdd<T>(ven.VendorTableOrig, unit.name + ".VendorTable", ven.VendorTableGuid);

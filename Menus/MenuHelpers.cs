@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BetterVendors.Utilities;
-using ModMaker;
+﻿using BetterVendors.Utilities;
 using UnityEngine;
 using GL = UnityEngine.GUILayout;
-using GLO = UnityEngine.GUILayoutOption;
 
 namespace BetterVendors.Menus
 {

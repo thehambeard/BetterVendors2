@@ -141,4 +141,7 @@
   <ItemGroup />
   <Import Project="..\KingmakerModMaker2\ModMaker\ModMaker.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release "C:\Program Files\7-Zip\7z.exe" a -tzip $(TargetName).zip $(TargetName)$(TargetExt) info.json</PostBuildEvent>
+  </PropertyGroup>
 </Project>

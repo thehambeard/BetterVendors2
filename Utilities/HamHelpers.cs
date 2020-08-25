@@ -1,17 +1,12 @@
-﻿using Kingmaker.EntitySystem.Entities;
-using Kingmaker;
-using System;
-using System.Collections.Generic;
+﻿using Kingmaker;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace BetterVendors.Utilities
 {
     public static class HamHelpers
     {
-        
+
         public static bool InThroneRoom()
         {
             return (Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||

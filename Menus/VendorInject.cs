@@ -70,7 +70,7 @@ namespace BetterVendors.Menus
                                 {
                                     Vendors.VendorInject.AddItemToVendor(item.Key, Vendors.VendorInject.VendorTableIds[vendors[vendorToolbar]]);
                                     itemAdded = item.Key;
-                                    
+
                                 }
                                 if (item.Key.Equals(itemAdded))
                                     GUILayout.Label(Local["Menu_Txt_ItemAdded"], falseWidth);

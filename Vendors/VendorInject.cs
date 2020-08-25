@@ -1,12 +1,12 @@
-﻿using Kingmaker.Blueprints;
+﻿using BetterVendors.Utilities;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items;
 using Kingmaker.Blueprints.Loot;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using BetterVendors.Utilities;
 using System.Reflection;
+using UnityEngine;
 
 
 namespace BetterVendors.Vendors
@@ -107,7 +107,7 @@ namespace BetterVendors.Vendors
         public static void AddItemToVendor(string itemId, string vendorId)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            Main.Mod.Debug(itemId +", " + vendorId);
+            Main.Mod.Debug(itemId + ", " + vendorId);
             BlueprintSharedVendorTable sharedVendorTable = ResourcesLibrary.TryGetBlueprint<BlueprintSharedVendorTable>(vendorId);
             BlueprintScriptableObject blueprintScriptableObject = ResourcesLibrary.TryGetBlueprint<BlueprintScriptableObject>(itemId);
             BlueprintUnitLoot blueprintUnitLoot = ScriptableObject.CreateInstance<BlueprintUnitLoot>();

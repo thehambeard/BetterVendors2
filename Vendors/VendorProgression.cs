@@ -670,7 +670,7 @@ namespace BetterVendors.Vendors
             {
                 return;
             }
-            
+
             var stockUpToDate = Game.Instance.Player.MainCharacter.Value.FreeformData["stockUpToDate"];
             int arcaneRank = KingdomState.Instance.Stats.Arcane.Rank;
             int divineRank = KingdomState.Instance.Stats.Divine.Rank;
@@ -712,13 +712,13 @@ namespace BetterVendors.Vendors
             }
         }
 
-        
+
         [HarmonyLib.HarmonyPatch(typeof(Player), "PostLoad")]
         public static class GameLoadGamePatch
         {
             static void Postfix()
             {
-                
+
                 if (Game.Instance.Player.MainCharacter.Value.FreeformData["stockUpToDate"] == 0)
                 {
                     AddStock();
@@ -741,6 +741,6 @@ namespace BetterVendors.Vendors
 
             }
         }
-        
+
     }
 }

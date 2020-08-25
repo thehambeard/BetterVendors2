@@ -1,18 +1,17 @@
-﻿using ModMaker;
+﻿using BetterVendors.Utilities;
+using BetterVendors.Vendors;
+using Kingmaker;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Area;
+using Kingmaker.Designers;
+using ModMaker;
+using ModMaker.Utility;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityModManagerNet;
-using GL = UnityEngine.GUILayout;
-using GLO = UnityEngine.GUILayoutOption;
 using static BetterVendors.Main;
-using ModMaker.Utility;
-using BetterVendors.Utilities;
-using Kingmaker;
-using System.Linq;
-using System.Collections.Generic;
-using Kingmaker.Blueprints;
-using BetterVendors.Vendors;
-using Kingmaker.Designers;
-using Kingmaker.Blueprints.Area;
+using GL = UnityEngine.GUILayout;
 
 namespace BetterVendors.Menus
 {
@@ -22,7 +21,7 @@ namespace BetterVendors.Menus
 
         public int Priority => 100;
         private string tpEP = "";
-        
+
         private static GUILayoutOption[] falseWidth = new GUILayoutOption[] { GUILayout.ExpandWidth(false) };
 
         public void OnGUI(UnityModManager.ModEntry modEntry)
@@ -62,7 +61,7 @@ namespace BetterVendors.Menus
                 tpEP = GL.TextField(tpEP);
                 if (GL.Button("TP EP", falseWidth))
                 {
-                    if(tpEP != "")
+                    if (tpEP != "")
                         GameHelper.EnterToArea(Library.Get<BlueprintAreaEnterPoint>(tpEP), Kingmaker.EntitySystem.Persistence.AutoSaveMode.None);
                 }
 
@@ -72,7 +71,7 @@ namespace BetterVendors.Menus
                     Helpers.Load();
                     Helpers.Reload();
                 }
-                if(GL.Button("Add Stock", falseWidth))
+                if (GL.Button("Add Stock", falseWidth))
                 {
                     Vendors.ProgressionLogic.AddStock();
                 }
@@ -143,7 +142,7 @@ namespace BetterVendors.Menus
         {
             using (new GUISubScope())
             {
-                
+
                 using (new GL.HorizontalScope())
                 {
                     GL.Label(string.Format("{0}: ", vendor.DisplayName), MenuHelpers.LabelStyleFixed, falseWidth);

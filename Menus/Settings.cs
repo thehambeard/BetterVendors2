@@ -1,12 +1,10 @@
 ﻿using BetterVendors.Utilities;
-using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items;
 using ModMaker;
 using ModMaker.Utility;
 using System;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 using UnityModManagerNet;
 using static BetterVendors.Main;
@@ -32,7 +30,7 @@ namespace BetterVendors.Menus
         public void OnGUI(UnityModManager.ModEntry modEntry)
         {
             if (!Mod.Enabled) return;
-            if (toggleStyle == null) 
+            if (toggleStyle == null)
                 toggleStyle = new GUIStyle(GUI.skin.toggle) { wordWrap = true };
             using (new GL.VerticalScope("box"))
             {
@@ -60,10 +58,10 @@ namespace BetterVendors.Menus
                         using (new GUISubScope())
                         {
                             string remove = "";
-                                                        
+
                             foreach (string trash in VendorTrashItems)
                             {
-                                
+
                                 using (new GL.VerticalScope("box", GL.Width(420f)))
                                 {
                                     using (new GL.HorizontalScope())
@@ -73,11 +71,11 @@ namespace BetterVendors.Menus
                                             remove = trash;
                                     }
                                 }
-                                
+
                             }
                             if (remove != "")
                                 VendorTrashItems.Remove(remove);
-                            
+
                         }
                     }
                 }
