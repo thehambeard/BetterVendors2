@@ -18,12 +18,9 @@ namespace BetterVendors
         public static ModManager<Core, Settings> Mod;
         public static MenuManager Menu;
         internal static LibraryScriptableObject Library;
-        public static UnityModManager.ModEntry ModEntry;
 
         static bool Load(UnityModManager.ModEntry modEntry)
         {
-            ModEntry = modEntry;
-            HarmonyLib.Harmony.DEBUG = false;
             Local = new LocalizationManager<DefaultLanguage>();
             Mod = new ModManager<Core, Settings>();
             Menu = new MenuManager();

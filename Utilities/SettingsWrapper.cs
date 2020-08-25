@@ -25,6 +25,12 @@ namespace BetterVendors.Utilities
             set => Mod.Settings.garbage = value;
         }
 
+        public static SerializableDictionary<string, int> TrashItemsKeep
+        {
+            get => Mod.Settings.garbageKeep;
+            set => Mod.Settings.garbageKeep = value;
+        }
+
         public static Color TrashColor
         {
             get => Mod.Settings.trashColor;

@@ -67,8 +67,7 @@ namespace BetterVendors.Vendors
         public void Destroy()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            Main.Mod.Debug(this.UnitGuid);
-            Main.Mod.Debug(this.EntityData);
+            
             if (this.EntityData == null) this.EntityData = GetDataById(this.UnitGuid);
             if (this.EntityData != null)
             {

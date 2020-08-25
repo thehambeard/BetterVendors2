@@ -2,6 +2,17 @@
 A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton
 
 ## Version 2.0.5
+* Fixed settings being reset on updating to new versions
+* Added a button to clear your trash list
+* Added ability to keep a certain number of trash items
+* Updated the wording in some of the menus to be easier to understand
+## Version 2.0.4
+* Fixed issue with companions despawning
+## Version 2.0.3
+* Fixed show trash items toggle button throwing an expection.
+## Version 2.0.2
+* Long load times have been fixed
+## Version 2.0.1
 * Moved Entire code base to Harmony 2.0
 * Moved KingmakerModMaker to Harmony 2.0
 * Moved Cotw/EA helpers to Harmony 2.0
@@ -17,15 +28,11 @@ Issili, and a vendor that has most of the items that are unobtainable.
 * Removed enabling/disabling individual throne room vendors, unnecessary feature
 * Moved arcane vendor progression from arsinoe to zarci
 * No longer need to hit the search button for vendor inject, list will update as you type after the 3rd character is typed
-* Vendor inject will now confirm that you added the item to the vendor\
+* Vendor inject will now confirm that you added the item to the vendor
 * New vendor POI flags will always be shown on the map.
-* Fixed issue with long load times.
-* Fixed show trash items toggle button throwing an expection.
-* Fixed issue with companions despawning
-* Fixed settings being reset on updating to new versions
 
 ## TODO:
-* Add support for keeping of a particular item even though it's on the trash list
+* Fix visual issue of trash items not updating their color in vendor screens
 
 ## Notes:
-* Before uninstalling 2.0.1 of the mod despawn the vendors 
+* Uninstalling during a save will probably break it.

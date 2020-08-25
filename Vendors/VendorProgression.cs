@@ -676,8 +676,7 @@ namespace BetterVendors.Vendors
             int divineRank = KingdomState.Instance.Stats.Divine.Rank;
             int militaryRank = KingdomState.Instance.Stats.Military.Rank;
             int stabilityRank = KingdomState.Instance.Stats.Stability.Rank;
-            Main.Mod.Debug(string.Format("Arcane: {0} Divine:{1} Military: {2} Stability {3}", arcaneRank, divineRank, militaryRank, stabilityRank));
-            Main.Mod.Debug(stockUpToDate);
+            
             try
             {
                 if (stockUpToDate == 0)

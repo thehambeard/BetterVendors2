@@ -123,7 +123,7 @@ namespace BetterVendors.Menus
 
         private void OnGUIThroneRoom()
         {
-            using (new GUISubScope("Throne Room Vendors", "box"))
+            using (new GUISubScope(Local["Menu_Tab_TRV"], "box"))
             {
                 if (!HamHelpers.InThroneRoom())
                 {

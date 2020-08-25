@@ -1,6 +1,8 @@
 ﻿using Kingmaker;
+using Kingmaker.Blueprints.Root.Strings.GameLog;
 using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
+using Kingmaker.UI.Log;
 using Kingmaker.UI.ServiceWindow;
 using Kingmaker.UI.Vendor;
 using ModMaker;
@@ -34,8 +36,7 @@ namespace BetterVendors.Vendors
             Mod.Debug(MethodBase.GetCurrentMethod());
 
             bool control = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-
-            Mod.Debug(control);
+            
             if (control && ToggleVendorTrash && Mod.Enabled)
             {
                 if (!slot.Item.IsNonRemovable && VendorTrashItems.Contains(slot.Item.Blueprint.AssetGuid) && slot.Index != -1)
@@ -45,7 +46,7 @@ namespace BetterVendors.Vendors
 
                     foreach (ItemTypicalSlot itp in slot.ParentGroup.Slots)
                     {
-                        HighlightItemSlotHelper.HighlightSlots(itp);
+                        ItemSlotHelper.HighlightSlots(itp);
                     }
                 }
                 else
@@ -56,7 +57,7 @@ namespace BetterVendors.Vendors
                         Mod.Debug(string.Format("{0} added to trash list.", slot.Item.Blueprint.Name));
                         foreach (ItemTypicalSlot itp in slot.ParentGroup.Slots)
                         {
-                            HighlightItemSlotHelper.HighlightSlots(itp);
+                            ItemSlotHelper.HighlightSlots(itp);
                         }
                     }
                 }
@@ -84,21 +85,16 @@ namespace BetterVendors.Vendors
             Mod.Debug(MethodBase.GetCurrentMethod());
 
             if ((Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||
-                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092"))
+                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092") ||
+                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("ead426a6c23d39548a670ee515d77df4"))
                 && ToggleAutoSell && ToggleVendorTrash && Mod.Enabled)
             {
-                Dictionary<ItemEntity, int> itemRemove = new Dictionary<ItemEntity, int>();
-                foreach (ItemEntity item in Game.Instance.Player.Inventory)
+                foreach (ItemEntity item in ItemSlotHelper.ItemsToRemove(true))
                 {
-                    if (VendorTrashItems.Contains(item.Blueprint.AssetGuid) && item.IsInStash)
-                    {
-                        Game.Instance.Player.GainMoney(item.Blueprint.SellPrice * (long)item.Count);
-                        itemRemove.Add(item, item.Count);
-                    }
-                }
-                foreach (KeyValuePair<ItemEntity, int> item in itemRemove)
-                {
-                    Game.Instance.Player.Inventory.Remove(item.Key, item.Value);
+                    if (TrashItemsKeep.ContainsKey(item.Blueprint.AssetGuid))
+                        Game.Instance.Player.Inventory.Remove(item, item.Count - TrashItemsKeep[item.Blueprint.AssetGuid]);
+                    else
+                        Game.Instance.Player.Inventory.Remove(item, 1);
                 }
             }
         }
@@ -106,7 +102,7 @@ namespace BetterVendors.Vendors
         public void OnAreaScenesLoaded() { }
     }
 
-    public static class HighlightItemSlotHelper
+    public static class ItemSlotHelper
     {
         public static void HighlightSlots(Kingmaker.UI.ServiceWindow.ItemSlot itemSlot)
         {
@@ -126,6 +122,46 @@ namespace BetterVendors.Vendors
                     itemSlot.ItemImage.color = Color.clear;
             }
         }
+
+        public static List<ItemEntity> ItemsToRemove(bool PayPlayer = false)
+        {
+            Dictionary<string, int> keepCount = new Dictionary<string, int>();
+            List<ItemEntity> listSell = new List<ItemEntity>();
+            long gold = 0;
+            foreach (ItemEntity item in Game.Instance.Player.Inventory)
+            {
+                if (VendorTrashItems.Contains(item.Blueprint.AssetGuid) && item.IsInStash)
+                {
+                    if (keepCount.ContainsKey(item.Blueprint.AssetGuid))
+                    {
+                        if (keepCount[item.Blueprint.AssetGuid] >= TrashItemsKeep[item.Blueprint.AssetGuid])
+                            continue;
+                    }
+                    if (PayPlayer)
+                    {
+                        gold += (item.Blueprint.SellPrice * (long)item.Count);
+                    }
+                    listSell.Add(item);
+                    if (TrashItemsKeep.ContainsKey(item.Blueprint.AssetGuid))
+                    {
+                        if (keepCount.ContainsKey(item.Blueprint.AssetGuid))
+                            keepCount[item.Blueprint.AssetGuid]++;
+                        else
+                            keepCount.Add(item.Blueprint.AssetGuid, 1);
+                    }
+                }
+            }
+            if(PayPlayer)
+            {
+                Game.Instance.Player.GainMoney(gold);
+                LogItemData data = new LogItemData($"{gold} gold made from autoselling trash loot!", GameLogStrings.Instance.DefaultColor, null, PrefixIcon.None, new List<LogChannel>
+                {
+                    LogChannel.None
+                });
+                Game.Instance.UI.BattleLogManager.LogView.AddLogEntry(data, false);
+            }
+            return listSell;
+        }
     }
 
 
@@ -135,17 +171,10 @@ namespace BetterVendors.Vendors
     {
         public static bool Prefix()
         {
+            Mod.Debug(MethodBase.GetCurrentMethod());
             if (!ToggleVendorTrash && !Main.Mod.Enabled)
                 return true;
-            List<ItemEntity> listSell = new List<ItemEntity>();
-            foreach (ItemEntity item in Game.Instance.Player.Inventory)
-            {
-                if (VendorTrashItems.Contains(item.Blueprint.AssetGuid) && item.IsInStash)
-                {
-                    listSell.Add(item);
-                }
-            }
-            foreach (ItemEntity i in listSell)
+            foreach (ItemEntity i in ItemSlotHelper.ItemsToRemove())
             {
                 Game.Instance.Vendor.AddForSell(i, i.Count);
             }
@@ -159,7 +188,7 @@ namespace BetterVendors.Vendors
     {
         public static void Postfix(ItemSlot __instance)
         {
-            HighlightItemSlotHelper.HighlightSlots(__instance);
+            ItemSlotHelper.HighlightSlots(__instance);
             __instance.UpdateCount();
         }
     }
@@ -170,7 +199,8 @@ namespace BetterVendors.Vendors
     {
         public static void Postfix(Kingmaker.UI.ServiceWindow.ItemSlot __instance)
         {
-            HighlightItemSlotHelper.HighlightSlots(__instance);
+            ItemSlotHelper.HighlightSlots(__instance);
+            __instance.UpdateCount();
         }
     }
 }

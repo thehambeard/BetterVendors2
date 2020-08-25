@@ -107,7 +107,6 @@ namespace BetterVendors.Vendors
         public static void AddItemToVendor(string itemId, string vendorId)
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            Main.Mod.Debug(itemId + ", " + vendorId);
             BlueprintSharedVendorTable sharedVendorTable = ResourcesLibrary.TryGetBlueprint<BlueprintSharedVendorTable>(vendorId);
             BlueprintScriptableObject blueprintScriptableObject = ResourcesLibrary.TryGetBlueprint<BlueprintScriptableObject>(itemId);
             BlueprintUnitLoot blueprintUnitLoot = ScriptableObject.CreateInstance<BlueprintUnitLoot>();

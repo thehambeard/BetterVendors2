@@ -41,7 +41,7 @@ namespace BetterVendors
             { "Menu_Txt_ItemAdded", " Item Added!" },
             { "Menu_Tab_Inject", "Vendor Inject" },
             { "Menu_Tab_TRV", "Throne Room Vendors" },
-            { "Menu_Tog_AutoSell", "Autosell trash items upon entering your throne room. The items are lost to the void and are gone forever in exchange for coin." },
+            { "Menu_Tog_AutoSell", "Autosell trash items upon entering your throne room or oleg's. The items are lost to the void and are gone forever in exchange for coin.  This is good for keeping vendors inventories clutter free. Trash items currently equipped are ignored.  Below click show to show your trash list.  Hit the + button to keep the number shown of that item in your invetory, say for example you want to make sure you have 3 longswords in your inventory, set the number to 3 and all the rest of the longswords you get will auto sell or sold at a vendor when you press the offer button.  0 means sell all." },
             { "Menu_Tog_HLScrolls", "Highlight unlearned scolls for the current character" },
             { "Menu_Txt_Unlearned", "unlearned scroll" },
             { "Menu_Tog_VendorTrash", "Vendor Trash: Enables you to ctrl click items in your inventory to set them as trash. They will move to the to sell box when you hit the offer button in the vendor screen or if you have the autosell enabled below it will sell trash items when you enter your throne room" },
@@ -54,7 +54,7 @@ namespace BetterVendors
             { "Menu_Btn_Enable", "Enable" },
             { "Menu_Btn_Disable", "Disable" },
             { "Menu_Btn_MoveVendor", "Move" },
-            { "Menu_Lbl_MoveVendor", "Use the buttons below to set the vendor's position to the player's current position" },
+            { "Menu_Lbl_MoveVendor", "Use the buttons below to customize a vendor's position. Vendor is set to the player's current position." },
             { "Menu_Tog_VenProgress", "Vendor Progress: Enables the fixed vendor progress mod, it functions exactly how it used to and is based on your kingdom stats." },
             { "Menu_Txt_NotInThrone", "Not in throne room." },
             { "Menu_Btn_Remove", "Remove" },
@@ -63,8 +63,10 @@ namespace BetterVendors
             { "Menu_Btn_AddAll", "Add all search results to {0}'s inventory" },
             { "Menu_Lbl_Noresult", "No results found" },
             { "Menu_Lbl_NotInGame", "Not in game" },
-            { "Menu_Lbl_Teleport", "Teleport to and from the merchant guild. You must be in the Throne Room in order to access the guild, and must use the teleport to leave the guild. Exits in the guild hall are disabled." },
-            { "Menu_Btn_Teleport", "Teleport" }
+            { "Menu_Lbl_Teleport", "Teleport to and from the merchant guild. You must be in the Throne Room in order to access the guild, and must use the teleport button to leave the guild. Exits in the guild hall are disabled." },
+            { "Menu_Btn_Teleport", "Teleport" },
+            { "Menu_Btn_ClearTrash", "Clear Trash List" },
+            { "Menu_Txt_Kept", "kept" }
         };
 
         public T Deserialize<T>(TextReader reader)

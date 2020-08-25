@@ -160,7 +160,6 @@ namespace BetterVendors.Utilities
             {
                 guid = Helpers.GuidStorage.getGuid(blueprint.name);
             }
-            Main.Mod.Debug(guid);
             blueprintScriptableObject_set_AssetId(blueprint, guid);
             // Sanity check that we don't stop on our own GUIDs or someone else's.
             BlueprintScriptableObject existing;

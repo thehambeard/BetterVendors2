@@ -450,8 +450,6 @@ namespace BetterVendors.Vendors
                 unit.ReplaceComponent<AddVendorItems>(newVendorTable);
                 unit.ReplaceComponent<DialogOnClick>(newDialog);
                 unit.Prefab.AssetId = ven.PrefabId;
-                Main.Mod.Debug(ven.DisplayName);
-                Main.Mod.Debug(ven.Name);
                 unit.LocalizedName = ScriptableObject.CreateInstance<SharedStringAsset>();
                 unit.LocalizedName.name = ven.Name + ".Local";
                 unit.LocalizedName.String = Helpers.CreateString(ven.Name + ".Local.Str", ven.DisplayName);

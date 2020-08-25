@@ -13,6 +13,7 @@ namespace BetterVendors
         public string localizationFileName;
         public string modPath;
         public HashSet<string> garbage = new HashSet<string>();
+        public SerializableDictionary<string, int> garbageKeep = new SerializableDictionary<string, int>();
         public Color trashColor;
         public Color scrollColor;
         public bool toggleHighlightScrolls;
@@ -22,6 +23,5 @@ namespace BetterVendors
         public bool toggleShowTrash;
         public SerializableDictionary<string, Vector3> positions;
         public SerializableDictionary<string, Vector3> rotations;
-
     }
 }

@@ -27,11 +27,15 @@ namespace BetterVendors.Menus
 
         GUIStyle toggleStyle;
 
+        float screenWidth;
+        float lineHeight = 40f;
+
         public void OnGUI(UnityModManager.ModEntry modEntry)
         {
             if (!Mod.Enabled) return;
             if (toggleStyle == null)
                 toggleStyle = new GUIStyle(GUI.skin.toggle) { wordWrap = true };
+            
             using (new GL.VerticalScope("box"))
             {
                 ToggleVendorProgression = GL.Toggle(ToggleVendorProgression, Local["Menu_Tog_VenProgress"], Array.Empty<GLO>());
@@ -44,14 +48,21 @@ namespace BetterVendors.Menus
             }
             using (new GL.VerticalScope("box"))
             {
-                ToggleVendorTrash = GL.Toggle(ToggleVendorTrash, Local["Menu_Tog_VendorTrash"], toggleStyle, GL.MaxWidth(800f));
+                ToggleVendorTrash = GL.Toggle(ToggleVendorTrash, Local["Menu_Tog_VendorTrash"], toggleStyle, GL.ExpandWidth(false));
                 using (new GUISubScope())
                 {
                     TrashColor = OnGUIColorSlider(TrashColor, Local["Menu_Txt_VendorTrash"]);
-                    ToggleAutoSell = GL.Toggle(ToggleAutoSell, Local["Menu_Tog_AutoSell"], Array.Empty<GLO>());
-                    if (GL.Button(ToggleShowTrash ? Local["Menu_Tog_HideTrash"] : Local["Menu_Tog_ShowTrash"], GL.ExpandWidth(false)))
+                    ToggleAutoSell = GL.Toggle(ToggleAutoSell, Local["Menu_Tog_AutoSell"], toggleStyle, GL.ExpandWidth(false));
+                    using (new GL.HorizontalScope())
                     {
-                        ToggleShowTrash = !ToggleShowTrash;
+                        if (GL.Button(ToggleShowTrash ? Local["Menu_Tog_HideTrash"] : Local["Menu_Tog_ShowTrash"], GL.ExpandWidth(false)))
+                        {
+                            ToggleShowTrash = !ToggleShowTrash;
+                        }
+                        if (GL.Button(Local["Menu_Btn_ClearTrash"], GL.ExpandWidth(false)))
+                        {
+                            VendorTrashItems.Clear();
+                        }
                     }
                     if (ToggleShowTrash)
                     {
@@ -61,14 +72,34 @@ namespace BetterVendors.Menus
 
                             foreach (string trash in VendorTrashItems)
                             {
-
-                                using (new GL.VerticalScope("box", GL.Width(420f)))
+                                using (new GL.VerticalScope("box", GL.ExpandWidth(false)))
                                 {
                                     using (new GL.HorizontalScope())
                                     {
-                                        GL.Label(library.Get<BlueprintItem>(trash).Name, GL.Width(350f));
+                                        bool hasKeep = TrashItemsKeep.ContainsKey(trash);
+                                        GL.Label($"{library.Get<BlueprintItem>(trash).Name} x{((hasKeep) ? TrashItemsKeep[trash] : 0)} {Local["Menu_Txt_Kept"]}", GL.MaxHeight(screenWidth), GL.MaxHeight(lineHeight));
+                                        if (GL.Button("+", GL.ExpandWidth(false)))
+                                        {
+                                            if (hasKeep)
+                                                TrashItemsKeep[trash]++;
+                                            else
+                                                TrashItemsKeep.Add(trash, 1);
+                                        }
+                                        if (GL.Button("-", GL.ExpandWidth(false)))
+                                        {
+                                            if (hasKeep && TrashItemsKeep[trash] > 0)
+                                                TrashItemsKeep[trash]--;
+                                            else if (hasKeep)
+                                                TrashItemsKeep.Remove(trash);
+                                        }
+
                                         if (GL.Button(Local["Menu_Btn_Remove"], GL.ExpandWidth(false)))
                                             remove = trash;
+
+                                        if (Event.current.type == EventType.Repaint)
+                                        {
+                                            screenWidth = GUILayoutUtility.GetLastRect().width;
+                                        }
                                     }
                                 }
 
