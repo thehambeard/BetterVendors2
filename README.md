@@ -19,7 +19,6 @@ A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambea
 * Added the merchant guild. The guild contains 14 new vendors, they have the vendor tables of the harder to get to vendors.
 These vendor tables include, Rushlight, Skeleton(All possible tables), Varnhold DLC tables including the Goblin Merchant in main campaign, 
 Issili, and a vendor that has most of the items that are unobtainable.   
-* Fixed VendorProgression giving Zarci the best stuff right off the bat
 * Changed the way throne room vendors are handled, all vendors are held in the same dictionary
 * Fixed some throne room vendors not being interactable
 * Throne room vendors now have their own BlueprintUnit
