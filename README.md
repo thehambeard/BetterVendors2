@@ -41,6 +41,7 @@ Issili, and a vendor that has most of the items that are unobtainable.
 * Add a trash bag to hold all trash till it is time to sell it
 * Add the stat books to custom vendors
 * Add support for DLC autosell locations 
+* Fix two of the vendors that are similar in items
 
 ## Notes:
 * Uninstalling during a save will probably break it.
