@@ -1,10 +1,10 @@
 # BetterVendors
 A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton
 
-## Vserion 2.0.6
+## Verion 2.0.6
 * Fixed issue with vendors duplicating.
 * Added a buttion to remove <2.0 vendors
-* Added a button to enable/disable a throne room vendor
+* Added buttons to enable/disable a throne room vendor
 ## Version 2.0.5
 * Fixed settings being reset on updating to new versions
 * Added a button to clear your trash list
@@ -36,6 +36,11 @@ Issili, and a vendor that has most of the items that are unobtainable.
 
 ## TODO:
 * Fix visual issue of trash items not updating their color in vendor screens
+* Add sell trash button that is only enabled in certain areas as an option from using auto sell
+* Add toggle for stacking trash or inventory as a whole
+* Add a trash bag to hold all trash till it is time to sell it
+* Add the stat books to custom vendors
+* Add support for DLC autosell locations 
 
 ## Notes:
 * Uninstalling during a save will probably break it.
