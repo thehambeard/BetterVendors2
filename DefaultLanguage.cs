@@ -66,7 +66,9 @@ namespace BetterVendors
             { "Menu_Lbl_Teleport", "Teleport to and from the merchant guild. You must be in the Throne Room in order to access the guild, and must use the teleport button to leave the guild. Exits in the guild hall are disabled." },
             { "Menu_Btn_Teleport", "Teleport" },
             { "Menu_Btn_ClearTrash", "Clear Trash List" },
-            { "Menu_Txt_Kept", "kept" }
+            { "Menu_Txt_Kept", "kept" },
+            { "Menu_Btn_CleanOld", "Clean Old" },
+            { "Menu_Txt_CleanOld", "Use clean old button to remove old vendors from previous <2.0 versions of the this mod." }
         };
 
         public T Deserialize<T>(TextReader reader)

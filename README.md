@@ -1,6 +1,10 @@
 # BetterVendors
 A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambeard/KingmakerModMaker) is required to compile.  Thanks to hsinyuhcan and lucianposton
 
+## Vserion 2.0.6
+* Fixed issue with vendors duplicating.
+* Added a buttion to remove <2.0 vendors
+* Added a button to enable/disable a throne room vendor
 ## Version 2.0.5
 * Fixed settings being reset on updating to new versions
 * Added a button to clear your trash list

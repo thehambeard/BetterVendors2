@@ -61,30 +61,32 @@ namespace BetterVendors.Vendors
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             this.Destroy();
-            this.EntityData = Game.Instance.EntityCreator.SpawnUnit((BlueprintUnit)Library.BlueprintsByAssetId[this.UnitGuid], this.Posistion, this.Rotation, Game.Instance.CurrentScene.MainState);
+            if (this.Enabled)
+                this.EntityData = Game.Instance.EntityCreator.SpawnUnit((BlueprintUnit)Library.BlueprintsByAssetId[this.UnitGuid], this.Posistion, this.Rotation, Game.Instance.CurrentScene.MainState);
         }
 
         public void Destroy()
         {
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
-            
-            if (this.EntityData == null) this.EntityData = GetDataById(this.UnitGuid);
-            if (this.EntityData != null)
-            {
-                this.EntityData.Destroy();
-                this.EntityData = null;
-            }
-        }
 
-        private static UnitEntityData GetDataById(string id)
-        {
-            Main.Mod.Debug(MethodBase.GetCurrentMethod());
             foreach (UnitEntityData unit in Game.Instance.State.Units)
             {
-                if (unit.Blueprint.AssetGuid.Equals(id))
-                    return unit;
+                if (unit.Blueprint.AssetGuid.Equals(this.UnitGuid))
+                    unit.Destroy();
             }
-            return null;
+        }
+        public void Enable()
+        {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            this.Enabled = true;
+            this.Spawn();
+        }
+
+        public void Disable()
+        {
+            Main.Mod.Debug(MethodBase.GetCurrentMethod());
+            this.Enabled = false;
+            this.Destroy();
         }
 
         public void Move(Vector3 posistion, Vector3 rotation)
@@ -92,6 +94,7 @@ namespace BetterVendors.Vendors
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             this.Posistion = posistion;
             this.Rotation = Quaternion.LookRotation(rotation);
+            this.Enabled = true;
             this.Spawn();
         }
     }

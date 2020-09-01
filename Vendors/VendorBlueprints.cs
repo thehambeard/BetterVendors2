@@ -319,7 +319,7 @@ namespace BetterVendors.Vendors
                     Vendor.Area.ThroneRoom, //Area Id
                     hassufPos,
                     Quaternion.LookRotation(hassufRot),
-                    true,
+                    (SettingsWrapper.VendorEnabled.ContainsKey(CloneGuids["hassuf"]) ? SettingsWrapper.VendorEnabled[CloneGuids["hassuf"]] : true),
                     CloneGuids["hassuf"], //UnitGuid
                     "f57c3145fc3b4946a2301168ea77b749", //DialogGuid
                     "0910f95f84bb4b0a8eb1704a4bd66c6d", //CueGuid
@@ -338,7 +338,7 @@ namespace BetterVendors.Vendors
                     Vendor.Area.ThroneRoom, //Area Id
                     verdalPos,
                     Quaternion.LookRotation(verdalRot),
-                    true,
+                    (SettingsWrapper.VendorEnabled.ContainsKey(CloneGuids["verdal"]) ? SettingsWrapper.VendorEnabled[CloneGuids["verdal"]] : true),
                     CloneGuids["verdal"], //UnitGuid
                     "65175fc690e748f39760c2f1dbb57cda", //DialogGuid
                     "8da93cfafa4f43d4ac668fd29baec76d", //CueGuid
@@ -357,7 +357,7 @@ namespace BetterVendors.Vendors
                     Vendor.Area.ThroneRoom, //Area Id
                     zarciePos,
                     Quaternion.LookRotation(zarcieRot),
-                    true,
+                    (SettingsWrapper.VendorEnabled.ContainsKey(CloneGuids["zarcie"]) ? SettingsWrapper.VendorEnabled[CloneGuids["zarcie"]] : true),
                     CloneGuids["zarcie"], //UnitGuid
                     "5d1f75fcd11c49678234049aacabb0b4", //DialogGuid
                     "83e0b988af3b4565a93d62e6914298ca", //CueGuid
@@ -376,7 +376,7 @@ namespace BetterVendors.Vendors
                     Vendor.Area.ThroneRoom, //Area Id
                     arsinoePos,
                     Quaternion.LookRotation(arsinoeRot),
-                    true,
+                    (SettingsWrapper.VendorEnabled.ContainsKey(CloneGuids["arsinoe"]) ? SettingsWrapper.VendorEnabled[CloneGuids["arsinoe"]] : true),
                     CloneGuids["arsinoe"], //UnitGuid
                     "027ad6e4e13545039b1a45ff1eb0cc04", //DialogGuid
                     "d030e275030a40598857bae6087eb050", //CueGuid

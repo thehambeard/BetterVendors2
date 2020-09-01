@@ -23,5 +23,6 @@ namespace BetterVendors
         public bool toggleShowTrash;
         public SerializableDictionary<string, Vector3> positions;
         public SerializableDictionary<string, Vector3> rotations;
+        public SerializableDictionary<string, bool> venodrEnable = new SerializableDictionary<string, bool>();
     }
 }

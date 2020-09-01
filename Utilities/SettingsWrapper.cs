@@ -81,5 +81,11 @@ namespace BetterVendors.Utilities
             get => Mod.Settings.rotations;
             set => Mod.Settings.rotations = value;
         }
+
+        public static SerializableDictionary<string, bool> VendorEnabled
+        {
+            get => Mod.Settings.venodrEnable;
+            set => Mod.Settings.venodrEnable = value;
+        }
     }
 }

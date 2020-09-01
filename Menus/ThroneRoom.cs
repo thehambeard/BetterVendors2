@@ -4,6 +4,7 @@ using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Area;
 using Kingmaker.Designers;
+using Kingmaker.EntitySystem.Entities;
 using ModMaker;
 using ModMaker.Utility;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace BetterVendors.Menus
         private string tpEP = "";
 
         private static GUILayoutOption[] falseWidth = new GUILayoutOption[] { GUILayout.ExpandWidth(false) };
+        private static List<string> oldVendors = new List<string> { "e0449cfcf8ad6084ebfc161fb73e9a27", "dbd0b3fced8738247b7c87dc77ef74f6", "478862ab88b8ef24385cb386c1644dc2", "3c7ad1ac37ba5224b93d77dd9b6ab723" };
 
         public void OnGUI(UnityModManager.ModEntry modEntry)
         {
@@ -135,6 +137,15 @@ namespace BetterVendors.Menus
                 {
                     OnGUIVendors(kvp.Value);
                 }
+                GL.Label("Menu_Txt_CleanOld");
+                if (GL.Button(Local["Menu_Btn_CleanOld"], MenuHelpers.ButtonStyle, falseWidth))
+                {
+                    foreach (UnitEntityData unit in Game.Instance.State.Units)
+                    {
+                        if (oldVendors.Contains(unit.Blueprint.AssetGuid))
+                            unit.Destroy();
+                    }
+                }
                 GUI.enabled = true;
             }
         }
@@ -155,7 +166,19 @@ namespace BetterVendors.Menus
                         SettingsWrapper.Rotations[vendor.UnitGuid] = rotation;
                         vendor.Move(position, rotation);
                     }
+                    if (GL.Button(Local["Menu_Btn_Enable"], MenuHelpers.ButtonStyle, falseWidth))
+                    {
+                        SettingsWrapper.VendorEnabled[vendor.UnitGuid] = true;
+                        vendor.Enable();
+                    }
+                    if (GL.Button(Local["Menu_Btn_Disable"], MenuHelpers.ButtonStyle, falseWidth))
+                    {
+                        SettingsWrapper.VendorEnabled[vendor.UnitGuid] = false;
+                        vendor.Disable();
+                    }
                 }
+
+                
             }
         }
     }
