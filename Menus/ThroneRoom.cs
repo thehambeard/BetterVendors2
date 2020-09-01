@@ -137,7 +137,7 @@ namespace BetterVendors.Menus
                 {
                     OnGUIVendors(kvp.Value);
                 }
-                GL.Label("Menu_Txt_CleanOld");
+                GL.Label(Local["Menu_Txt_CleanOld"]);
                 if (GL.Button(Local["Menu_Btn_CleanOld"], MenuHelpers.ButtonStyle, falseWidth))
                 {
                     foreach (UnitEntityData unit in Game.Instance.State.Units)
