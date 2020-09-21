@@ -1,9 +1,6 @@
 ﻿using BetterVendors.Utilities;
 using BetterVendors.Vendors;
 using Kingmaker;
-using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Area;
-using Kingmaker.Designers;
 using Kingmaker.EntitySystem.Entities;
 using ModMaker;
 using ModMaker.Utility;
@@ -124,7 +121,7 @@ namespace BetterVendors.Menus
                 }
                 GUI.enabled = true;
             }
-            
+
         }
 
         private void OnGUITrash()
@@ -133,7 +130,7 @@ namespace BetterVendors.Menus
             {
                 GUI.enabled = HamHelpers.InValidSellArea();
                 GL.Label(Local["Menu_Lbl_TrashIt"], MenuHelpers.LabelStyleWrap, falseWidth);
-                if(GL.Button(Local["Menu_Btn_TrashIt"], MenuHelpers.ButtonStyle, falseWidth))
+                if (GL.Button(Local["Menu_Btn_TrashIt"], MenuHelpers.ButtonStyle, falseWidth))
                 {
                     VendorTrashController.Trash();
                 }

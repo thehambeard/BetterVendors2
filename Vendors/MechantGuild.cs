@@ -93,7 +93,7 @@ namespace BetterVendors.Vendors
                     VendorBlueprints.NewVendors[goblinVend].Spawn();
                     VendorBlueprints.NewVendors[goblinVend].EntityData.FreeformData["Upgraded"] = 1;
                 }
-                
+
             }
             Game.Instance.Player.MainCharacter.Value.Position = new Vector3(16.43f, 0.12f, -0.55f);
             Game.Instance.Player.MainCharacter.Value.Orientation = 90f;

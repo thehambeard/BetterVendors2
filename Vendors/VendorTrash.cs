@@ -37,7 +37,7 @@ namespace BetterVendors.Vendors
             Mod.Debug(MethodBase.GetCurrentMethod());
 
             bool control = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-            
+
             if (control && ToggleVendorTrash && Mod.Enabled)
             {
                 if (!slot.Item.IsNonRemovable && VendorTrashItems.Contains(slot.Item.Blueprint.AssetGuid) && slot.Index != -1)
@@ -147,9 +147,9 @@ namespace BetterVendors.Vendors
                         if (keepCount[item.Blueprint.AssetGuid] >= TrashItemsKeep[item.Blueprint.AssetGuid])
                             continue;
                     }
-                    
-                        gold += (item.Blueprint.SellPrice * (long)item.Count);
-                    
+
+                    gold += (item.Blueprint.SellPrice * (long)item.Count);
+
                     listSell.Add(item);
                     if (TrashItemsKeep.ContainsKey(item.Blueprint.AssetGuid))
                     {
@@ -160,7 +160,7 @@ namespace BetterVendors.Vendors
                     }
                 }
             }
-            
+
             return listSell;
         }
     }

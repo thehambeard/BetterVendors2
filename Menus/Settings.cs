@@ -35,7 +35,7 @@ namespace BetterVendors.Menus
             if (!Mod.Enabled) return;
             if (toggleStyle == null)
                 toggleStyle = new GUIStyle(GUI.skin.toggle) { wordWrap = true };
-            
+
             using (new GL.VerticalScope("box"))
             {
                 ToggleVendorProgression = GL.Toggle(ToggleVendorProgression, Local["Menu_Tog_VenProgress"], Array.Empty<GLO>());

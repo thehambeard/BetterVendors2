@@ -419,7 +419,7 @@ namespace BetterVendors.Vendors
         {
             foreach (KeyValuePair<string, Vendor> kvp in NewVendors)
             {
-                
+
                 if (kvp.Value.Shared)
                     CreateVendor<BlueprintSharedVendorTable>(kvp.Value);
                 else
