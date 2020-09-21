@@ -27,7 +27,8 @@ namespace BetterVendors.Vendors
             {"arsinoe", "ae8de86d673a43aaa3c96b62978ac75b" },
             {"hassuf" , "bd9607a0746543068abf099290d5ba6b" },
             {"zarcie" , "dcf8a96cb8234654a1d9b66ba5e8f81d" },
-            {"verdal" , "803e8f2fdd85417da9653b79dd2bd528" }
+            {"verdal" , "803e8f2fdd85417da9653b79dd2bd528" },
+            {"bokken" , "4e4ad3475a75495a9b8a2e78cbe86112" }
         };
 
         //defaults
@@ -39,6 +40,8 @@ namespace BetterVendors.Vendors
         private static readonly Vector3 hassufRot = new Vector3(-0.46f, 0, -0.88f);
         private static readonly Vector3 arsinoePos = new Vector3(-7.2f, 0.6f, 8.5f);
         private static readonly Vector3 arsinoeRot = new Vector3(-0.07f, 0, -0.99f);
+        private static readonly Vector3 bokkenPos = new Vector3(2.3f, 0.62f, 8f);
+        private static readonly Vector3 bokkenRot = new Vector3(0.38f, 0f, -0.92f);
 
         static LibraryScriptableObject Library => Main.Library;
 
@@ -292,8 +295,9 @@ namespace BetterVendors.Vendors
                     "Goblin Trader", //DisplayName
                     "You ever been to Varnhold?", //Description
                     "2db8287e83e344b4c8a2415d5750393e", //Prefab
-                    "488ce39f5594cff4f8a8228e95b091e3", //VendorTableOriginal C71_GoblinVendorTable
-                    "591b0b52eaac41f39ddc0b9bd57b4bf7",  false //VendorTableGuid
+                    "387c142f6db54758a8d7eb52a0a2666e", //VendorTableOriginal C71_GoblinVendorTable
+                    //"591b0b52eaac41f39ddc0b9bd57b4bf7",  false //VendorTableGuid
+                    "none", true
                     ) },
             { "94f1d2c05db54a7ab7b0c25881dca72b",
                 new Vendor(
@@ -371,6 +375,25 @@ namespace BetterVendors.Vendors
                     "5450d563aab78134196ee9a932e88671", //VendorTableOriginal 
                     "none",  true //VendorTableGuid
                     ) },
+            { CloneGuids["bokken"],
+                new Vendor(
+                    Vendor.Area.ThroneRoom, //Area Id
+                    bokkenPos,
+                    Quaternion.LookRotation(bokkenRot),
+                    (SettingsWrapper.VendorEnabled.ContainsKey(CloneGuids["bokken"]) ? SettingsWrapper.VendorEnabled[CloneGuids["bokken"]] : true),
+                    CloneGuids["bokken"], //UnitGuid
+                    "257ea3894f97467aabf7e271a9ca1753", //DialogGuid
+                    "e6a7d3a2af5547b9aff497308f2b1116", //CueGuid
+                    "71570d16a99b4d22ad0858011fb0d065", //AnsListGuid
+                    "43d9a86f76794c5bb856acf4ee8b6e97", //AnswerShowGuid
+                    "4e8a963f0326488c845cd5be04dc03b4", //AnswerExitGuid
+                    "BokkenClone", //name
+                    "Bokken", //DisplayName
+                    "Hello your grace.", //Description
+                    "167f1f25ba8132744ab25f6b78cc8a7f", //Prefab
+                    "54b3716b416b428e9b3326427f396020", //VendorTableOriginal Custom
+                    "none",  false //VendorTableGuid
+                    ) },
             { CloneGuids["arsinoe"],
                 new Vendor(
                     Vendor.Area.ThroneRoom, //Area Id
@@ -396,6 +419,7 @@ namespace BetterVendors.Vendors
         {
             foreach (KeyValuePair<string, Vendor> kvp in NewVendors)
             {
+                
                 if (kvp.Value.Shared)
                     CreateVendor<BlueprintSharedVendorTable>(kvp.Value);
                 else
@@ -473,6 +497,8 @@ namespace BetterVendors.Vendors
             Rotations.Add(CloneGuids["arsinoe"], arsinoeRot);
             Positions.Add(CloneGuids["verdal"], verdalPos);
             Rotations.Add(CloneGuids["verdal"], verdalRot);
+            Positions.Add(CloneGuids["bokken"], bokkenPos);
+            Rotations.Add(CloneGuids["bokken"], bokkenRot);
         }
 
         public void HandleModEnable()
@@ -480,8 +506,15 @@ namespace BetterVendors.Vendors
             Main.Mod.Debug(MethodBase.GetCurrentMethod());
             foreach (KeyValuePair<string, string> kvp in CloneGuids)
             {
-                NewVendors[kvp.Value].Posistion = Positions[kvp.Value];
-                NewVendors[kvp.Value].Rotation = Quaternion.LookRotation(Rotations[kvp.Value]);
+                Main.Mod.Debug(Positions.ContainsKey(kvp.Value));
+                if (Positions.ContainsKey(kvp.Value))
+                    NewVendors[kvp.Value].Posistion = Positions[kvp.Value];
+                else
+                    Positions.Add(CloneGuids["bokken"], bokkenPos);
+                if (Rotations.ContainsKey(kvp.Value))
+                    NewVendors[kvp.Value].Rotation = Quaternion.LookRotation(Rotations[kvp.Value]);
+                else
+                    Rotations.Add(CloneGuids["bokken"], bokkenRot);
             }
         }
 
