@@ -86,16 +86,24 @@ namespace BetterVendors.Vendors
 
             if ((Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||
                 Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092") ||
-                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("ead426a6c23d39548a670ee515d77df4"))
+                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("30b2515422d8a104aa903f241c376969") ||
+                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("ead426a6c23d39548a670ee515d77df4")) 
                 && ToggleAutoSell && ToggleVendorTrash && Mod.Enabled)
             {
-                foreach (ItemEntity item in ItemSlotHelper.ItemsToRemove(true))
+                long gold = 0;
+                foreach (ItemEntity item in ItemSlotHelper.ItemsToRemove(out gold))
                 {
                     if (TrashItemsKeep.ContainsKey(item.Blueprint.AssetGuid))
                         Game.Instance.Player.Inventory.Remove(item, item.Count - TrashItemsKeep[item.Blueprint.AssetGuid]);
                     else
-                        Game.Instance.Player.Inventory.Remove(item, 1);
+                        Game.Instance.Player.Inventory.Remove(item, item.Count);
                 }
+                Game.Instance.Player.GainMoney(gold);
+                LogItemData data = new LogItemData($"{gold} gold made from autoselling trash loot!", GameLogStrings.Instance.DefaultColor, null, PrefixIcon.None, new List<LogChannel>
+                {
+                    LogChannel.None
+                });
+                Game.Instance.UI.BattleLogManager.LogView.AddLogEntry(data, false);
             }
         }
 
@@ -123,11 +131,11 @@ namespace BetterVendors.Vendors
             }
         }
 
-        public static List<ItemEntity> ItemsToRemove(bool PayPlayer = false)
+        public static List<ItemEntity> ItemsToRemove(out long gold)
         {
             Dictionary<string, int> keepCount = new Dictionary<string, int>();
             List<ItemEntity> listSell = new List<ItemEntity>();
-            long gold = 0;
+            gold = 0;
             foreach (ItemEntity item in Game.Instance.Player.Inventory)
             {
                 if (VendorTrashItems.Contains(item.Blueprint.AssetGuid) && item.IsInStash)
@@ -137,10 +145,9 @@ namespace BetterVendors.Vendors
                         if (keepCount[item.Blueprint.AssetGuid] >= TrashItemsKeep[item.Blueprint.AssetGuid])
                             continue;
                     }
-                    if (PayPlayer)
-                    {
+                    
                         gold += (item.Blueprint.SellPrice * (long)item.Count);
-                    }
+                    
                     listSell.Add(item);
                     if (TrashItemsKeep.ContainsKey(item.Blueprint.AssetGuid))
                     {
@@ -151,15 +158,7 @@ namespace BetterVendors.Vendors
                     }
                 }
             }
-            if(PayPlayer)
-            {
-                Game.Instance.Player.GainMoney(gold);
-                LogItemData data = new LogItemData($"{gold} gold made from autoselling trash loot!", GameLogStrings.Instance.DefaultColor, null, PrefixIcon.None, new List<LogChannel>
-                {
-                    LogChannel.None
-                });
-                Game.Instance.UI.BattleLogManager.LogView.AddLogEntry(data, false);
-            }
+            
             return listSell;
         }
     }
@@ -169,12 +168,13 @@ namespace BetterVendors.Vendors
     [HarmonyLib.HarmonyPatch("PushSale")]
     internal static class VenderMassSale_PushSale_Patch
     {
+        static long gold;
         public static bool Prefix()
         {
             Mod.Debug(MethodBase.GetCurrentMethod());
             if (!ToggleVendorTrash && !Main.Mod.Enabled)
                 return true;
-            foreach (ItemEntity i in ItemSlotHelper.ItemsToRemove())
+            foreach (ItemEntity i in ItemSlotHelper.ItemsToRemove(out gold))
             {
                 Game.Instance.Vendor.AddForSell(i, i.Count);
             }
