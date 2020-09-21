@@ -79,10 +79,21 @@ namespace BetterVendors.Vendors
                 Game.Instance.Player.MainCharacter.Value.FreeformData["BVMechantGuildLoadOnce"] = 1;
             }
 
-            foreach (UnitEntityData e in Game.Instance.State.Units.Where(c => c.Faction.AssetGuid.Equals("72f240260881111468db610b6c37c099")))
+            foreach (UnitEntityData e in Game.Instance.State.Units)
             {
-                e.Position = new Vector3(16.85f, 0.07f, 6.74f);
-                e.Orientation = 90f;
+                string goblinVend = "d044c070bc9c4129930307ae16fd17f8";
+                if (e.Faction.AssetGuid.Equals("72f240260881111468db610b6c37c099"))
+                {
+                    e.Position = new Vector3(16.85f, 0.07f, 6.74f);
+                    e.Orientation = 90f;
+                }
+                if (e.Blueprint.AssetGuid.Equals(goblinVend) && e.FreeformData["Upgraded"] == 0)
+                {
+                    e.Destroy();
+                    VendorBlueprints.NewVendors[goblinVend].Spawn();
+                    VendorBlueprints.NewVendors[goblinVend].EntityData.FreeformData["Upgraded"] = 1;
+                }
+                
             }
             Game.Instance.Player.MainCharacter.Value.Position = new Vector3(16.43f, 0.12f, -0.55f);
             Game.Instance.Player.MainCharacter.Value.Orientation = 90f;

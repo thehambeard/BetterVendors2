@@ -68,7 +68,9 @@ namespace BetterVendors
             { "Menu_Btn_ClearTrash", "Clear Trash List" },
             { "Menu_Txt_Kept", "kept" },
             { "Menu_Btn_CleanOld", "Clean Old" },
-            { "Menu_Txt_CleanOld", "Use clean old button to remove old vendors from previous <2.0 versions of the this mod." }
+            { "Menu_Txt_CleanOld", "Use clean old button to remove old vendors from previous <2.0 versions of the this mod." },
+            { "Menu_Lbl_TrashIt", "Sell all items you have marked as trash in your shared stash. Note: You must be in a valid area that autosell would usually work, such as the throne room or Oleg's.  Items you sell with this function are lost forever and do not clog any vendor's inventory.  If you wish for items to be sold automatically entering these areas turn on autosell in the mod settings menu." },
+            { "Menu_Btn_TrashIt", "Trash"}
         };
 
         public T Deserialize<T>(TextReader reader)

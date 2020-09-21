@@ -1,4 +1,5 @@
-﻿using Kingmaker;
+﻿using BetterVendors.Utilities;
+using Kingmaker;
 using Kingmaker.Blueprints.Root.Strings.GameLog;
 using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
@@ -80,14 +81,9 @@ namespace BetterVendors.Vendors
 
         public void HandleSlotsSorted(SlotsGroup slotsGroup) { }
 
-        public void OnAreaLoadingComplete()
+        public static void Trash()
         {
-            Mod.Debug(MethodBase.GetCurrentMethod());
-
-            if ((Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("173c1547502bb7243ad94ef8eec980d0") ||
-                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("c39ed0e2ceb98404b811b13cb5325092") ||
-                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("30b2515422d8a104aa903f241c376969") ||
-                Game.Instance.CurrentlyLoadedArea.AssetGuid.Equals("ead426a6c23d39548a670ee515d77df4")) 
+            if (HamHelpers.InValidSellArea()
                 && ToggleAutoSell && ToggleVendorTrash && Mod.Enabled)
             {
                 long gold = 0;
@@ -107,10 +103,16 @@ namespace BetterVendors.Vendors
             }
         }
 
+        public void OnAreaLoadingComplete()
+        {
+            Mod.Debug(MethodBase.GetCurrentMethod());
+            Trash();
+        }
+
         public void OnAreaScenesLoaded() { }
     }
 
-    public static class ItemSlotHelper
+    internal static class ItemSlotHelper
     {
         public static void HighlightSlots(Kingmaker.UI.ServiceWindow.ItemSlot itemSlot)
         {

@@ -34,6 +34,7 @@ namespace BetterVendors.Menus
             if (!Mod.Enabled) return;
             if (!MenuHelpers.NotInGameMessage()) return;
             OnGUIMerchant();
+            OnGUITrash();
             OnGUIThroneRoom();
         }
 #if (DEBUG)
@@ -115,11 +116,26 @@ namespace BetterVendors.Menus
         {
             using (new GUISubScope("Merchant Guild", "box"))
             {
-                GUI.enabled = (GUI.enabled = (HamHelpers.InThroneRoom() || HamHelpers.InGuildHall()));
+                GUI.enabled = (HamHelpers.InThroneRoom() || HamHelpers.InGuildHall());
                 GL.Label(Local["Menu_Lbl_Teleport"], MenuHelpers.LabelStyleWrap, falseWidth);
                 if (GL.Button(Local["Menu_Btn_Teleport"], MenuHelpers.ButtonStyle, falseWidth))
                 {
                     Vendors.MechantGuild.TP();
+                }
+                GUI.enabled = true;
+            }
+            
+        }
+
+        private void OnGUITrash()
+        {
+            using (new GUISubScope("Vendor Trash", "box"))
+            {
+                GUI.enabled = HamHelpers.InValidSellArea();
+                GL.Label(Local["Menu_Lbl_TrashIt"], MenuHelpers.LabelStyleWrap, falseWidth);
+                if(GL.Button(Local["Menu_Btn_TrashIt"], MenuHelpers.ButtonStyle, falseWidth))
+                {
+                    VendorTrashController.Trash();
                 }
                 GUI.enabled = true;
             }
@@ -179,8 +195,6 @@ namespace BetterVendors.Menus
                         vendor.Disable();
                     }
                 }
-
-                
             }
         }
     }
