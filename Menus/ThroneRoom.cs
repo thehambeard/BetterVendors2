@@ -92,6 +92,8 @@ namespace BetterVendors.Menus
                 {
                     VendorBlueprints.CreateAllVendors();
                 }
+                if (GL.Button("Recreate VendorTables", falseWidth))
+                    VendorTableBlueprints.CreateVendorTables();
                 if (GL.Button("Reset Vendors", falseWidth))
                 {
                     VendorBlueprints.ResetPositions();
