@@ -7,7 +7,7 @@ A mod for Pathfinder Kingmaker, [KingmakerModMaker](https://github.com/thehambea
 * Fixed Goblin Merchant in guild to sell correct items from varnhold's lot
 * Total amount of gold received from autoselling displayed in log
 * Added Bokken to the throne room to sell potions
-* Added a button to sell trash if autosell isn't an option player doesn't like.
+* Added a button to sell trash if autosell is an option player doesn't like.
 ## Verison 2.0.6
 * Fixed issue with vendors duplicating.
 * Added a button to remove <2.0 vendors
