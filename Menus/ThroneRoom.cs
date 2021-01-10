@@ -1,6 +1,9 @@
 ﻿using BetterVendors.Utilities;
 using BetterVendors.Vendors;
 using Kingmaker;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Area;
+using Kingmaker.Designers;
 using Kingmaker.EntitySystem.Entities;
 using ModMaker;
 using ModMaker.Utility;
@@ -142,16 +145,20 @@ namespace BetterVendors.Menus
         {
             using (new GUISubScope(Local["Menu_Tab_TRV"], "box"))
             {
+                
                 if (!HamHelpers.InThroneRoom())
                 {
                     GL.Label(Local["Menu_Txt_NotInThrone"]);
                     return;
                 }
+
                 GL.Label(Local["Menu_Lbl_MoveVendor"], MenuHelpers.LabelStyleWrap, falseWidth);
+                
                 foreach (KeyValuePair<string, Vendors.Vendor> kvp in Vendors.VendorBlueprints.NewVendors.Where(n => n.Value.AreaId == Vendors.Vendor.Area.ThroneRoom))
                 {
                     OnGUIVendors(kvp.Value);
                 }
+                
                 GL.Label(Local["Menu_Txt_CleanOld"]);
                 if (GL.Button(Local["Menu_Btn_CleanOld"], MenuHelpers.ButtonStyle, falseWidth))
                 {
@@ -162,6 +169,7 @@ namespace BetterVendors.Menus
                     }
                 }
                 GUI.enabled = true;
+                
             }
         }
         private void OnGUIVendors(Vendors.Vendor vendor)
